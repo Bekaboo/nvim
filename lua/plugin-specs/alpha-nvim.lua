@@ -1,8 +1,6 @@
-local get = require('utils.get')
-
 return {
   'goolord/alpha-nvim',
   cmd = 'Alpha',
-  requires = get.spec('nvim-web-devicons'),
-  config = get.config('alpha-nvim')
+  requires = require('plugin-specs.nvim-web-devicons'),
+  config = function() require('plugin-configs.alpha-nvim') end,
 }

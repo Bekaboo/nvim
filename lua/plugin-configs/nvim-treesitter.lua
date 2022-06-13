@@ -1,95 +1,17 @@
-local get = require('utils.get')
-local langs = require('utils.shared').langs
+local M = {}
 
-require 'nvim-treesitter.configs'.setup {
-  -- One of 'all', 'maintained' (parsers with maintainers),
-  -- or a list of languages
-  ensure_installed = get.ts_list(langs),
-
-  -- Install languages synchronously (only applied to `ensure_installed`)
+M.ts_configs = require('nvim-treesitter.configs')
+M.ts_opts = {
+  ensure_installed = require('utils.shared').langs:list('ts'),
   sync_install = true,
-
-  -- List of parsers to ignore installing
   ignore_install = {},
-
   highlight = {
-    -- `false` will disable the whole extension
     enable = true,
-
-    -- list of language that will be disabled
     disable = {},
-
-    -- Setting this to true will run `:h syntax` and tree-sitter
-    -- at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled
-    -- (like for indentation).
-    -- Using this option may slow down your editor, and you may
-    -- see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false
   },
-
-  -- For nvim-ts-rainbow
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = 1024
-  },
-
-  -- nvim-ts-context-commentstring
-  context_commentstring = { enable = true },
-
-  -- nvim-treesitter-textobjects
-  require'nvim-treesitter.configs'.setup {
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = false, -- Automatically jump forward to textobj
-        keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ['am'] = '@function.outer',
-          ['im'] = '@function.inner',
-          ['al'] = '@loop.outer',
-          ['il'] = '@loop.inner',
-          ['ak'] = '@class.outer',
-          ['ik'] = '@class.inner',
-          ['ia'] = '@parameter.inner',
-          ['aa'] = '@parameter.outer',
-          ['a/'] = '@comment.outer',
-          ['a*'] = '@comment.outer'
-        }
-      },
-      move = {
-        enable = true,
-        set_jumps = true, -- whether to set jumps in the jumplist
-        goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@function.outer',
-          [']k'] = '@class.outer',
-          [']a'] = '@parameter.outer'
-        },
-        goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@function.outer',
-          [']K'] = '@class.outer',
-          [']A'] = '@parameter.outer'
-        },
-        goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[['] = '@function.outer',
-          ['[k'] = '@class.outer',
-          ['[a'] = '@parameter.outer'
-        },
-        goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[]'] = '@function.outer',
-          ['[K'] = '@class.outer',
-          ['[A'] = '@parameter.outer'
-        }
-      }
-    }
-  }
 }
+M.ts_configs.setup(M.ts_opts)
 
 -- Automatically install parser for new filetype (with confirmation)
 -- From nvim-treesitter issue #2108:
@@ -112,14 +34,20 @@ require 'nvim-treesitter.configs'.setup {
 -- end
 
 -- Automatically install treesitter parsers (no confirmation)
-local parsers = require'nvim-treesitter.parsers'
-function _G.ensure_treesitter_language_installed()
-  local lang = parsers.get_buf_lang()
-  if parsers.get_parser_configs()[lang] and not parsers.has_parser(lang) then
-    vim.schedule_wrap(function()
-    vim.cmd('TSInstall '..lang)
-    end)()
-  end
-end
+local ts_parsers = require('nvim-treesitter.parsers')
+vim.api.nvim_create_autocmd(
+  { 'FileType' },
+  {
+    pattern = '*',
+    callback = function()
+      local lang = ts_parsers.get_buf_lang()
+      if ts_parsers.get_parser_configs()[lang] and not ts_parsers.has_parser(lang) then
+        vim.schedule_wrap(function()
+          vim.cmd('TSInstall ' .. lang)
+        end)()
+      end
+    end
+  }
+)
 
-vim.cmd [[autocmd FileType * :lua ensure_treesitter_language_installed()]]
+return M

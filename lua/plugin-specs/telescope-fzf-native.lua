@@ -1,4 +1,5 @@
 return {
   'nvim-telescope/telescope-fzf-native.nvim',
-  run = 'make'
+  run = 'make',
+  config = function() require('plugin-configs.telescope-fzf-native') end
 }

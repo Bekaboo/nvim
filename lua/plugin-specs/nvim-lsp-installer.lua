@@ -1,5 +1,3 @@
-local get = require('utils.get')
-
 return {
   'williamboman/nvim-lsp-installer',
 
@@ -7,10 +5,10 @@ return {
     'LspInstallInfo', 'LspInstall', 'LspUninstall', 'LspUninstallAll',
     'LspInstallLog', 'LspPrintInstalled'
   },
-  requires = get.spec('nvim-lspconfig'),
+  requires = require('plugin-specs.nvim-lspconfig'),
 
   -- If cmp-nvim-lsp is installed then this
   -- plugin should be loaded after cmp-nvim-lsp
   after = 'nvim-lspconfig',
-  config = get.config('nvim-lsp-installer')
+  config = function() require('plugin-configs.nvim-lsp-installer') end
 }

@@ -1,7 +1,9 @@
-local npairs = require('nvim-autopairs')
-local Rule = require('nvim-autopairs.rule')
+local M = {}
 
-npairs.setup({
+M.npairs = require('nvim-autopairs')
+M.Rule = require('nvim-autopairs.rule')
+
+M.opts = {
   check_ts = true,
   fast_wrap = {
     map = '<C-c>',
@@ -14,31 +16,35 @@ npairs.setup({
     highlight = 'Search',
     highlight_grey='Comment'
   }
-})
+}
+M.npairs.setup(M.opts)
 
-npairs.add_rules({
+M.extra_rules = {
   -- Add spaces between parenthesis
-  Rule(' ', ' ')
+  M.Rule(' ', ' ', { '-norg', '-markdown', '-latex' })
     :with_pair(function (opts)
       local pair = opts.line:sub(opts.col - 1, opts.col)
       return vim.tbl_contains({ '()', '[]', '{}' }, pair)
     end),
-  Rule('( ', ' )')
+  M.Rule('( ', ' )')
     :with_pair(function() return false end)
     :with_move(function(opts)
       return opts.prev_char:match('.%)') ~= nil
     end)
     :use_key(')'),
-  Rule('{ ', ' }')
+  M.Rule('{ ', ' }')
     :with_pair(function() return false end)
     :with_move(function(opts)
       return opts.prev_char:match('.%}') ~= nil
     end)
     :use_key('}'),
-  Rule('[ ', ' ]')
+  M.Rule('[ ', ' ]')
     :with_pair(function() return false end)
     :with_move(function(opts)
       return opts.prev_char:match('.%]') ~= nil
     end)
     :use_key(']')
-})
+}
+M.npairs.add_rules(M.extra_rules)
+
+return M

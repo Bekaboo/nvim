@@ -1,3 +1,5 @@
+local M = {}
+
 vim.cmd
 [[
 command XO Trouble
@@ -10,7 +12,8 @@ command Xl TroubleToggle loclist
 command Xr TroubleToggle lsp_references
 ]]
 
-require('trouble').setup {
+M.trouble = require('trouble')
+M.opts = {
   action_keys = {
     -- key mappings for actions in the trouble list
     -- map to {} to remove a mapping, for example:
@@ -41,3 +44,6 @@ require('trouble').setup {
   auto_jump = { 'lsp_definitions' },-- for the given modes, automatically jump if there is only a single result
   use_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
 }
+M.trouble.setup(M.opts)
+
+return M

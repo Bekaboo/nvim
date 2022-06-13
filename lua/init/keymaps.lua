@@ -63,9 +63,9 @@ vim.keymap.set('n', '<M-g><Tab>', '<C-w>g<Tab>', { noremap = true })
 vim.keymap.set('n', '<M-}>', '<C-w>}', { noremap = true })
 
 -- Close all floating windows
-vim.keymap.set('n', '<M-;>',
+vim.keymap.set('n', 'q',
   function()
-    require('utils.funcs').close_all_floatings()
+    require('utils.funcs').close_all_floatings('q')
   end,
   { noremap = true }
 )

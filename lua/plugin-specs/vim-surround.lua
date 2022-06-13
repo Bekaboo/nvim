@@ -1,7 +1,7 @@
 return {
   'tpope/vim-surround',
   -- To repeat surrounding operations
-  requires = require('utils.get').spec('vim-repeat')
+  requires = require('plugin-specs.vim-repeat')
 }
 -- Change surrounding from <char1> to <char2>: cs<char1><char2>
 -- Change surrounding to <char>: cst<char>

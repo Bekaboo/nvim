@@ -1,14 +1,10 @@
-local get = require('utils.get')
-
-local spec = {
+return {
   'nvim-treesitter/nvim-treesitter',
   run = ':TSUpdate',
   requires = {
-    get.spec('nvim-ts-rainbow'),
-    get.spec('nvim-ts-context-commentstring'),
-    get.spec('nvim-treesitter-textobjects')
+    require('plugin-specs.nvim-ts-rainbow'),
+    require('plugin-specs.nvim-ts-context-commentstring'),
+    require('plugin-specs.nvim-treesitter-textobjects'),
   },
-  config = get.config('nvim-treesitter')
+  config = function() require('plugin-configs.nvim-treesitter') end
 }
-
-return spec

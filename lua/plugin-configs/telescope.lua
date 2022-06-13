@@ -1,32 +1,33 @@
-local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
-map('n', '<Leader>F', [[<cmd>Telescope<CR>]], opts)
-map('n', '<Leader>ff', function() require('telescope.builtin').find_files() end, opts)
-map('n', '<Leader>fof', function() require('telescope.builtin').oldfiles() end, opts)
-map('n', '<Leader>f;', function() require('telescope.builtin').live_grep() end, opts)
-map('n', '<Leader>f*', function() require('telescope.builtin').grep_string() end, opts)
-map('n', '<Leader>fh', function() require('telescope.builtin').help_tags() end, opts)
-map('n', '<Leader>fm', function() require('telescope.builtin').marks() end, opts)
-map('n', '<Leader>fq', function() require('telescope.builtin').quickfix() end, opts)
-map('n', '<Leader>fl', function() require('telescope.builtin').loclist() end, opts)
-map('n', '<Leader>fbf', function() require('telescope.builtin').current_buffer_fuzzy_find() end, opts)
-map('n', '<Leader>fR', function() require('telescope.builtin').lsp_references() end, opts)
-map('n', '<Leader>fa', function() require('telescope.builtin').lsp_code_actions() end, opts)
-map('n', '<Leader>fe', function() require('telescope.builtin').diagnostics() end, opts)
-map('n', '<Leader>fd', function() require('telescope.builtin').lsp_definitions() end, opts)
-map('n', '<Leader>ftd', function() require('telescope.builtin').lsp_type_definitions() end, opts)
-map('n', '<Leader>fi', function() require('telescope.builtin').lsp_implementations() end, opts)
-map('n', '<Leader>fp', function() require('telescope.builtin').treesitter() end, opts)
-map('n', '<Leader>fs', function() require('telescope.builtin').lsp_document_symbols() end, opts)
-map('n', '<Leader>fS', function() require('telescope.builtin').lsp_workspace_symbols() end, opts)
-map('n', '<Leader>fg', function() require('telescope.builtin').git_status() end, opts)
-map('n', '<Leader>fgf', function() require('telescope.builtin').git_files() end, opts)
-map('n', '<Leader>fj', function() require('telescope').extensions.project.project({ display_type = 'full' }) end, opts)
+local M = {}
 
-local telescope = require('telescope')
-local actions = require('telescope.actions')
+M.telescope = require('telescope')
+M.telescope_builtin = require('telescope.builtin')
+M.telescope_actions = require('telescope.actions')
 
-telescope.setup {
+vim.keymap.set('n', '<Leader>F', function() M.telescope_builtin.builtin() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>ff', function() M.telescope_builtin.find_files() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fof', function() M.telescope_builtin.oldfiles() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>f;', function() M.telescope_builtin.live_grep() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>f*', function() M.telescope_builtin.grep_string() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fh', function() M.telescope_builtin.help_tags() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fm', function() M.telescope_builtin.marks() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fq', function() M.telescope_builtin.quickfix() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fl', function() M.telescope_builtin.loclist() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fbf', function() M.telescope_builtin.current_buffer_fuzzy_find() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fR', function() M.telescope_builtin.lsp_references() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fa', function() M.telescope_builtin.lsp_code_actions() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fe', function() M.telescope_builtin.diagnostics() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fd', function() M.telescope_builtin.lsp_definitions() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>ftd', function() M.telescope_builtin.lsp_type_definitions() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fi', function() M.telescope_builtin.lsp_implementations() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fp', function() M.telescope_builtin.treesitter() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fs', function() M.telescope_builtin.lsp_document_symbols() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fS', function() M.telescope_builtin.lsp_workspace_symbols() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fgs', function() M.telescope_builtin.git_status() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fgf', function() M.telescope_builtin.git_files() end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>fj', function() M.telescope.extensions.project.project({ display_type = 'full' }) end, { noremap = true, silent = true })
+
+M.opts = {
   defaults = {
     prompt_prefix = '/ ',
     selection_caret = '→ ',
@@ -40,41 +41,30 @@ telescope.setup {
     preview = { filesize_limit = 5 },
     mappings = {
       i = {
-        ['<M-c>'] = actions.close,
-        ['<M-;>'] = actions.close,
-        ['<M-s>'] = actions.select_horizontal,
-        ['<M-v>'] = actions.select_vertical,
-        ['<M-t>'] = actions.select_tab,
-        ['<M-q>'] = actions.send_to_qflist + actions.open_qflist,
-        ['<M-Q>'] = actions.send_selected_to_qflist + actions.open_qflist,
+        ['<M-c>'] = M.telescope_actions.close,
+        ['<M-s>'] = M.telescope_actions.select_horizontal,
+        ['<M-v>'] = M.telescope_actions.select_vertical,
+        ['<M-t>'] = M.telescope_actions.select_tab,
+        ['<M-q>'] = M.telescope_actions.send_to_qflist + M.telescope_actions.open_qflist,
+        ['<M-Q>'] = M.telescope_actions.send_selected_to_qflist + M.telescope_actions.open_qflist,
       },
 
       n = {
-        ['q'] = actions.close,
-        ['<esc>'] = actions.close,
-        ['<M-c>'] = actions.close,
-        ['<M-;>'] = actions.close,
-        ['<M-s>'] = actions.select_horizontal,
-        ['<M-v>'] = actions.select_vertical,
-        ['<M-t>'] = actions.select_tab,
-        ['<M-q>'] = actions.send_to_qflist + actions.open_qflist,
-        ['<M-Q>'] = actions.send_selected_to_qflist + actions.open_qflist,
-        ['<C-n>'] = actions.move_selection_next,
-        ['<C-p>'] = actions.move_selection_previous,
+        ['q'] = M.telescope_actions.close,
+        ['<esc>'] = M.telescope_actions.close,
+        ['<M-c>'] = M.telescope_actions.close,
+        ['<M-s>'] = M.telescope_actions.select_horizontal,
+        ['<M-v>'] = M.telescope_actions.select_vertical,
+        ['<M-t>'] = M.telescope_actions.select_tab,
+        ['<M-q>'] = M.telescope_actions.send_to_qflist + M.telescope_actions.open_qflist,
+        ['<M-Q>'] = M.telescope_actions.send_selected_to_qflist + M.telescope_actions.open_qflist,
+        ['<C-n>'] = M.telescope_actions.move_selection_next,
+        ['<C-p>'] = M.telescope_actions.move_selection_previous,
       }
     }
   },
-  extensions = {
-    project = {
-      base_dirs = {
-        '~/'
-      },
-      hidden_files = true
-    }
-  }
 }
 
-vim.cmd [[ packadd telescope-fzf-native.nvim ]]
-vim.cmd [[ packadd telescope-project.nvim ]]
-telescope.load_extension('fzf')
-telescope.load_extension('project')
+M.telescope.setup(M.opts)
+
+return M

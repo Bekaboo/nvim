@@ -1,10 +1,8 @@
-local get = require('utils.get')
-
 return {
   'lewis6991/gitsigns.nvim',
   requires = {
-    get.spec('plenary'),
-    get.spec('vim-repeat')
+    require('plugin-specs.plenary'),
+    require('plugin-specs.vim-repeat')
   },
-  config = get.config('gitsigns')
+  config = function() require('plugin-configs.gitsigns') end,
 }

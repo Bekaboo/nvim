@@ -1,12 +1,14 @@
-local get = require('utils.get')
-local langs = require('utils.shared').langs
-local ensure_installed = get.lsp_server_list(langs)
+local M = {}
+
+M.langs = require('utils.shared').langs
+M.ensure_installed = require('utils.shared').langs:list('lsp_server')
+M.lsp_installer = require('nvim-lsp-installer')
 
 --------------------------------------------------------------------------------
 -- LSP UI configs --------------------------------------------------------------
 
 -- Config for `nvim-lsp-installer` icons
-require('nvim-lsp-installer').settings({
+M.lsp_installer_opts = {
   ui = {
     icons = {
       server_installed = '',
@@ -21,39 +23,45 @@ require('nvim-lsp-installer').settings({
       uninstall_server = 'dd'
     }
   }
-})
+}
+M.lsp_installer.settings(M.lsp_installer_opts)
 
 -- Customize LSP floating window border
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-  opts = opts or {}
-  opts.border = opts.border or 'single'
-  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+M.floating_preview_opts = { border = 'single' }
+M.floating_preview_setup = function(custom_opts)
+  local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+  function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = vim.tbl_deep_extend('force', opts, custom_opts)
+    vim.pretty_print(opts)
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+  end
 end
+M.floating_preview_setup(M.floating_preview_opts)
 
 -- LSP diagnostic signs
-local signs = {
-  Error = ' ', -- xf659
-  Warn = ' ',  -- xf529
-  Info = ' ',  -- xf7fc
-  Hint = ' ',  -- xf835
- }
-for type, icon in pairs(signs) do
-  local hl = 'DiagnosticSign' .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+M.diagnostic_opts = {}
+M.diagnostic_opts.signs = {
+  { 'DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError', numhl = 'DiagnosticSignError' } },
+  { 'DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn', numhl = 'DiagnosticSignWarn' } },
+  { 'DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo', numhl = 'DiagnosticSignInfo' } },
+  { 'DiagnosticSignHint', { text = ' ', texthl = 'DiagnosticSignHint', numhl = 'DiagnosticSignHint' } },
+}
+for _, sign_settings in ipairs(M.diagnostic_opts.signs) do
+  vim.fn.sign_define(unpack(sign_settings))
 end
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    -- Enable underline, use default values
-    underline = true,
-    -- Enable virtual text, override spacing to 4
-    virtual_text = {
-      spacing = 4,
-      prefix = ''
-    }
+M.diagnostic_opts.handlers = {
+  -- Enable underline, use default values
+  underline = true,
+  -- Enable virtual text, override spacing to 4
+  virtual_text = {
+    spacing = 4,
+    prefix = ''
   }
-)
+}
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  M.diagnostic_opts.handlers)
 
 -- Show diagnostics automatically in hover
 -- vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float(nil, {focus=false})]]
@@ -97,71 +105,79 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 -------------------------- on_attach function begins ---------------------------
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach =
-  function(client, bufnr)
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+M.keymaps = {
+  { 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { noremap = true, silent = true } },
+  { 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true } },
+  { 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true } },
+  { 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { noremap = true, silent = true } },
+  { 'n', '<Leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', { noremap = true, silent = true } },
+  { 'n', '<Leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', { noremap = true, silent = true } },
+  { 'n', '<Leader>lwd', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', { noremap = true, silent = true } },
+  { 'n', '<Leader>lwl', '<cmd>lua vim.pretty_print(vim.lsp.buf.list_workspace_folders())<CR>',
+    { noremap = true, silent = true } },
+  { 'n', '<leader>lt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { noremap = true, silent = true } },
+  { 'n', '<Leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true } },
+  { 'n', '<Leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true } },
+  { 'n', '<Leader>lR', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true } },
+  { 'n', '<Leader>le', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true } },
+  { 'n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true } },
+  { 'n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true } },
+  { 'n', '<leader>ll', '<cmd>lua vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true } },
+  { 'n', '<leader>l=', '<cmd>lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true } },
+}
 
-    -- Enable completion triggered by <c-x><c-o>
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { noremap=true, silent = true }
-    buf_set_keymap('n', '<Leader>lD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', '<Leader>ld', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', '<Leader>lh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', '<Leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<Leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '<Leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<Leader>lwd', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<Leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    buf_set_keymap('n', '<Leader>lt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    buf_set_keymap('n', '<Leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', '<Leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    buf_set_keymap('n', '<Leader>lR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<Leader>le', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-    buf_set_keymap('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', '<leader>ll', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-    buf_set_keymap('n', '<leader>l=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
-    -- aerial's on_attach function for showing code outline
-    local aerial_ready, aerial = pcall(require, 'aerial')
-    if aerial_ready then
-      aerial.on_attach(client, bufnr)
-    end
+M.on_attach = function(client, bufnr)
+  local buf_set_keymap = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local buf_set_option = function(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  -- Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  for _, map in ipairs(M.keymaps) do
+    buf_set_keymap(unpack(map))
   end
+end
 --------------------------- on_attach function ends ----------------------------
 
 -- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
 local cmp_ready, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 if cmp_ready then
-capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+  M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+end
+
+M.get_lsp_server_cfg = function(name)
+  local status, server_config =
+  pcall(require, 'lsp-server-configs/' .. name)
+  if not status then return {}
+  else return server_config
+  end
 end
 
 -- Automatically install servers in `ensure_installed`
 -- and add additional capabilities supported by nvim-cmp
-for _, server_name in pairs(ensure_installed) do
-  local server_available, requested_server
-    = require('nvim-lsp-installer').get_server(server_name)
-  if server_available then
-    if not requested_server:is_installed() then
-      print('[lsp-installer]: installing ' .. server_name)
-      requested_server:install()
+M.lsp_install_and_set = function()
+  for _, server_name in pairs(M.ensure_installed) do
+    local server_available, requested_server = M.lsp_installer.get_server(server_name)
+    if server_available then
+      if not requested_server:is_installed() then
+        print('[lsp-installer]: installing ' .. server_name)
+        requested_server:install()
+      end
+      requested_server:on_ready(function()
+        requested_server:setup {
+          on_attach = M.on_attach,
+          capabilities = M.capabilities,
+          settings = M.get_lsp_server_cfg(server_name)
+        }
+      end)
+    else
+      print('[lsp-installer]: server ' .. server_name .. ' not available')
     end
-    requested_server:on_ready(function()
-      requested_server:setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        settings = get.lsp_server_config(server_name)
-      }
-    end)
-  else
-    print('[lsp-installer]: server ' .. server_name .. ' not available')
   end
 end
-
+M.lsp_install_and_set()
 -- Passed config table to each LSP server --------------------------------------
 --------------------------------------------------------------------------------
+
+return M

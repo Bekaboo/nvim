@@ -38,17 +38,24 @@ M.last_pos_jmp = function()
 end
 
 -- Source: https://github.com/wookayin/dotfiles/commit/96d935515486f44ec361db3df8ab9ebb41ea7e40
-M.close_all_floatings = function()
-  local closed_windows = {}
+M.close_all_floatings = function(key)
+  local count = 0
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local config = vim.api.nvim_win_get_config(win)
-    if config.relative ~= '' then         -- is_floating_window?
-      vim.api.nvim_win_close(win, false)  -- do not force
-      table.insert(closed_windows, win)
+    if config.relative ~= '' then -- is_floating_window?
+      vim.api.nvim_win_close(win, false) -- do not force
+      count = count + 1
     end
   end
-  print(string.format ('%d windows closed: %s', #closed_windows,
-                       vim.inspect(closed_windows)))
+  if count == 0 then  -- Fallback
+    vim.api.nvim_feedkeys(
+      vim.api.nvim_replace_termcodes(key, true, true, true), 'nt', true)
+  end
+end
+
+-- Judge if a plugin is loaded
+M.loaded = function(plugin)
+  return packer_plugins[plugin] and packer_plugins[plugin].loaded
 end
 
 return M

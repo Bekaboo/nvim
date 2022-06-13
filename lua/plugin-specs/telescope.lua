@@ -1,5 +1,3 @@
-local get = require('utils.get')
-
 return {
   'nvim-telescope/telescope.nvim',
   opt = true,
@@ -10,14 +8,13 @@ return {
     '<Leader>fl', '<Leader>fbf', '<Leader>fR', '<Leader>fa',
     '<Leader>fe', '<Leader>fd', '<Leader>ftd', '<Leader>fi',
     '<Leader>fp', '<Leader>fs', '<Leader>fS', '<Leader>fg',
-    '<Leader>fj'
+    '<Leader>fgf', '<Leader>fj'
   },
   requires = {
-    get.spec('plenary'),
-    get.spec('telescope-fzf-native'),
-    get.spec('telescope-project'),
-    get.spec('nvim-treesitter'),
-    get.spec('nvim-web-devicons')
+    require('plugin-specs.plenary'),
+    require('plugin-specs.telescope-fzf-native'),
+    require('plugin-specs.telescope-project'),
+    require('plugin-specs.nvim-web-devicons')
   },
-  config = get.config('telescope')
+  config = function() require('plugin-configs.telescope') end
 }

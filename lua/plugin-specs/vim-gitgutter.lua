@@ -1,4 +1,4 @@
 return {
   'airblade/vim-gitgutter',
-  config = require('utils.get').config('vim-gitgutter'),
+  config = function() require('plugin-configs.vim-gitgutter') end,
 }

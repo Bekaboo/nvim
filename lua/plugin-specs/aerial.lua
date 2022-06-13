@@ -1,12 +1,10 @@
-local get = require('utils.get')
-
 return {
   'stevearc/aerial.nvim',
   requires = {
-    get.spec('nvim-lspconfig'),
-    get.spec('nvim-lsp-installer'),
-    get.spec('nvim-treesitter')
+    require('plugin-specs.nvim-lspconfig'),
+    require('plugin-specs.nvim-lsp-installer'),
+    require('plugin-specs.nvim-treesitter')
   },
   after = 'nvim-lsp-installer',
-  config = get.config('aerial')
+  config = function() require('plugin-configs.aerial') end,
 }

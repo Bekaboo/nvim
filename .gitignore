@@ -7,3 +7,6 @@
 plugin/
 packer_compiled.lua
 spell/
+
+# ignore git account informations
+git_account.lua

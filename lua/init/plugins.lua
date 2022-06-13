@@ -19,51 +19,54 @@ end
 --   augroup end
 -- ]]
 
-require('load.packer_compiled')
+pcall(require, 'load.packer_compiled')
 pcall(require, 'load.extra')
 
-local get = require('utils.get')
 return require('packer').startup({
   function(use)
-    use(get.spec('packer'))             -- Packer manages itself
+    use(require('plugin-specs.packer'))             -- Packer manages itself
 
     -- Color schemes
-    use(get.spec('falcon'))
-    use(get.spec('dracula'))
+    use(require('plugin-specs.falcon'))
+    use(require('plugin-specs.nvim-falcon'))
+    use(require('plugin-specs.dracula'))
 
     -- Editing
-    use(get.spec('nvim-cmp'))           -- Auto completion
-    use(get.spec('vsc-vim-easymotion')) -- Easymotion for vscode-neovim
-    use(get.spec('vim-surround'))
-    use(get.spec('vim-commentary'))
-    use(get.spec('vim-sleuth'))         -- Auto detect indentation
-    use(get.spec('nvim-autopairs'))
-    use(get.spec('undotree'))           -- Visible undo history
+    use(require('plugin-specs.nvim-cmp'))           -- Auto completion
+    use(require('plugin-specs.vsc-vim-easymotion')) -- Easymotion for vscode-neovim
+    use(require('plugin-specs.vim-surround'))
+    use(require('plugin-specs.vim-commentary'))
+    use(require('plugin-specs.vim-sleuth'))         -- Auto detect indentation
+    use(require('plugin-specs.nvim-autopairs'))
+    use(require('plugin-specs.undotree'))           -- Visible undo history
+    use(require('plugin-specs.ZFVimIM'))            -- Chinese insert method
 
     -- Language support
-    use(get.spec('nvim-lspconfig'))     -- LSP config helper
-    use(get.spec('nvim-lsp-installer'))
-    use(get.spec('nvim-treesitter'))    -- Language parser
-    use(get.spec('copilot'))            -- Github copilot
+    use(require('plugin-specs.nvim-lspconfig'))     -- LSP config helper
+    use(require('plugin-specs.nvim-lsp-installer'))
+    use(require('plugin-specs.nvim-treesitter'))    -- Language parser
+    use(require('plugin-specs.copilot'))            -- Github copilot
 
     -- Integration
-    use(get.spec('toggleterm'))         -- Better terminal integration
-    use(get.spec('gitsigns'))           -- Show git info at side
-    use(get.spec('lualine'))
+    use(require('plugin-specs.toggleterm'))         -- Better terminal integration
+    use(require('plugin-specs.gitsigns'))           -- Show git info at side
+    use(require('plugin-specs.lualine'))
 
     -- Navigation
-    use(get.spec('alpha-nvim'))         -- Greeting page
-    use(get.spec('nvim-tree'))          -- File tree
-    use(get.spec('barbar'))             -- Buffer line
-    use(get.spec('telescope'))          -- Fuzzy finding
-    use(get.spec('aerial'))             -- Code outline
+    use(require('plugin-specs.alpha-nvim'))         -- Greeting page
+    use(require('plugin-specs.nvim-tree'))          -- File tree
+    use(require('plugin-specs.barbar'))             -- Buffer line
+    use(require('plugin-specs.telescope'))          -- Fuzzy finding
+    use(require('plugin-specs.aerial'))             -- Code outline
 
     -- Notes and docs
-    use(get.spec('markdown-preview'))
+    use(require('plugin-specs.markdown-preview'))
+    use(require('plugin-specs.neorg'))              -- Org-mode in nvim
 
     -- Tools
-    use(get.spec('impatient'))          -- Speed up lua `require()`
-    use(get.spec('nvim-colorizer'))     -- Show RGB colors inline
+    use(require('plugin-specs.impatient'))          -- Speed up lua `require()`
+    use(require('plugin-specs.nvim-colorizer'))     -- Show RGB colors inline
+    use(require('plugin-specs.firenvim'))
   end,
 
   config = {

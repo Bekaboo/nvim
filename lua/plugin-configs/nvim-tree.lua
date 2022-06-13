@@ -1,14 +1,15 @@
-local map = vim.keymap.set
+local M = {}
 
-map('n', '<Leader>tt', function() require('nvim-tree').toggle(false, false) end, { noremap = true })
-map('n', '<Leader>tc', function() require('nvim-tree.actions.copy-paste').print_clipboard() end, { noremap = true })
-map('n', '<Leader>tq', function() require('nvim-tree.view').close() end, { noremap = true })
-map('n', '<Leader>tff', function() require('nvim-tree').find_file(true) end, { noremap = true })
-map('n', '<Leader>tft', function() require('nvim-tree').toggle(true, false) end, { noremap = true })
-map('n', '<Leader>to', function() require('nvim-tree').open() end, { noremap = true })
-map('n', '<Leader>tr', function() require('nvim-tree.actions.reloaders').reload_explorer() end, { noremap = true })
+vim.keymap.set('n', '<Leader>tt', function() require('nvim-tree').toggle(false, false) end, { noremap = true })
+vim.keymap.set('n', '<Leader>tc', function() require('nvim-tree.actions.copy-paste').print_clipboard() end, { noremap = true })
+vim.keymap.set('n', '<Leader>tq', function() require('nvim-tree.view').close() end, { noremap = true })
+vim.keymap.set('n', '<Leader>tff', function() require('nvim-tree').find_file(true) end, { noremap = true })
+vim.keymap.set('n', '<Leader>tft', function() require('nvim-tree').toggle(true, false) end, { noremap = true })
+vim.keymap.set('n', '<Leader>to', function() require('nvim-tree').open() end, { noremap = true })
+vim.keymap.set('n', '<Leader>tr', function() require('nvim-tree.actions.reloaders').reload_explorer() end, { noremap = true })
 
-require 'nvim-tree'.setup {
+M.nvim_tree = require('nvim-tree')
+M.opts = {
   view = {
     auto_resize = true,
     mappings = {
@@ -48,8 +49,12 @@ require 'nvim-tree'.setup {
           deleted = '',
           untracked = '',
           ignored = ''
-        }
+        },
+        default = ''
       }
     }
   },
 }
+M.nvim_tree.setup(M.opts)
+
+return M

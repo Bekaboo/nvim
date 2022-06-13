@@ -1,6 +1,15 @@
 local M = {}
 
-M.langs = {
+local langs_mt = {}
+langs_mt.__index = langs_mt
+function langs_mt:list(field)
+  local list = {}
+  for _, val in pairs(self) do
+    table.insert(list, val[field])
+  end
+  return list
+end
+M.langs = setmetatable({
   bash = { ft = 'bash', lsp_server = 'bashls' },
   bibtex = { ts = 'bibtex', ft = 'bib', lsp_server = 'texlab' },
   c = { ts = 'c', ft = 'c', lsp_server = 'clangd' },
@@ -11,8 +20,9 @@ M.langs = {
   make = { ts = 'make', ft = 'make' },
   markdown = { ts = 'markdown', ft = 'markdown', lsp_server = 'remark_ls' },
   python = { ts = 'python', ft = 'python', lsp_server = 'pylsp' },
-  vim = { ts = 'vim', ft = 'vim', lsp_server = 'vimls' }
-}
+  vim = { ts = 'vim', ft = 'vim', lsp_server = 'vimls' },
+  neorg = { ts = 'norg', ft = 'norg' }
+}, langs_mt)
 
 M.borders = {
   rounded = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
@@ -39,6 +49,7 @@ M.borders = {
 
 M.icons = {
   Array = '',
+  Calculator = '',
   Class = '',
   Collapsed = '',
   Color = '',
@@ -48,7 +59,7 @@ M.icons = {
   EnumMember = '了',
   Event = '',
   Field = '',
-  File = '',
+  File = '',
   Folder = '',
   Function = '',
   Interface = '',
@@ -64,11 +75,12 @@ M.icons = {
   Snippet = '',
   String = '',
   Struct = 'פּ',
+  Terminal = '',
   Text = '',
   TypeParameter = '',
   Unit = '塞',
   Value = '',
-  Variable = ''
+  Variable = '',
 }
 
 -- Original source: http://patorjk.com/blog/software/

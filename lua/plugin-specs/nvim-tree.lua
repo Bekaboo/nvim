@@ -1,5 +1,3 @@
-local get = require('utils.get')
-
 return {
   'kyazdani42/nvim-tree.lua',
   cmd = {
@@ -9,6 +7,6 @@ return {
   keys = {
     '<Leader>tt', '<Leader>tff', '<Leader>tft', '<Leader>to'
   },
-  requires = get.spec('nvim-web-devicons'),
-  config = get.config('nvim-tree')
+  requires = require('plugin-specs.nvim-web-devicons'),
+  config = function() require('plugin-configs.nvim-tree') end,
 }

@@ -1,11 +1,9 @@
-local get = require('utils.get')
-
 return {
   'lukas-reineke/indent-blankline.nvim',
   event = 'BufEnter',
   requires = {
-    get.spec('nvim-treesitter'),    -- To identify functions, methods, etc
-    get.spec('vim-sleuth')          -- To automatically detect indentation
+    require('plugin-specs.nvim-treesitter'),    -- To identify functions, methods, etc
+    require('plugin-specs.vim-sleuth')          -- To automatically detect indentation
  },
-  config = get.config('indent-blankline')
+  config = function() require('plugin-configs.indent-blankline') end
 }

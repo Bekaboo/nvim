@@ -1,19 +1,17 @@
-local get = require('utils.get')
-
 return {
   'akinsho/toggleterm.nvim',
   keys = {
-    '<C-\\>', '<leader><leader>v',
-    '<leader>v', '<leader>V'
+    '<C-\\>', '\\\\v','\\\\V',
+    '\\v', '\\V', '\\g'
   },
   cmd = {
-    'ToggleTerm', 'ToggleTermToggleAdd', 'TermExec',
-    'ToggleTermHorizontal', 'ToggleTermVertical',
-    'ToggleTermFloat', 'ToggleTermTab',
-    'Git', 'Vifm', 'VifmCurrentFile'
+    'ToggleTerm', 'ToggleTermToggleAdd',
+    'TermExec', 'ToggleTermSendCurrentLine',
+    'ToggleTermSendVisualLines', 'ToggleTermSendVisualSelection',
+    'Git', 'Vifm', 'VifmCurrentFile', 'ToggleTermToggleAll',
   },
-  config = get.config('toggleterm'),
+  config = function() require('plugin-configs.toggleterm') end,
   -- Plenary is required for integration with vifm and lazygit
-  requires = get.spec('plenary')
+  requires = require('plugin-specs.plenary')
 }
 

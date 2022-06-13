@@ -1,6 +1,8 @@
-local lualine = require('lualine')
+local M = {}
 
-local location = function ()
+M.lualine = require('lualine')
+
+M.location = function()
   local cursor_loc = vim.api.nvim_win_get_cursor(0)
   return cursor_loc[1] .. ',' .. cursor_loc[2] + 1
 end
@@ -18,11 +20,11 @@ _G.Statusline_timer:start(
   end)
 )
 
-local clock = function()
+M.clock = function()
   return os.date('%a %H:%M')
 end
 
-local indent_style = function ()
+M.indent_style = function()
   if vim.o.expandtab then
     return 'Spaces: ' .. vim.o.shiftwidth
   else
@@ -34,15 +36,16 @@ local indent_style = function ()
   end
 end
 
-lualine.setup {
+M.opts = {
   options = {
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
     globalstatus = true and vim.o.laststatus == 3,
+    theme = vim.g.default_colorscheme
   },
- sections = {
-   lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
+  sections = {
+    lualine_a = { 'mode' },
+    lualine_b = { 'branch', 'diff', 'diagnostics' },
     lualine_c = {
       {
         'filename',
@@ -55,7 +58,7 @@ lualine.setup {
       }
     },
     lualine_x = {
-      indent_style,
+      M.indent_style,
       'encoding',
       {
         'fileformat',
@@ -67,7 +70,10 @@ lualine.setup {
       },
       'filetype'
     },
-    lualine_y = {location, 'progress'},
-    lualine_z = {clock}
+    lualine_y = { M.location, 'progress' },
+    lualine_z = { M.clock }
   }
 }
+M.lualine.setup(M.opts)
+
+return M
