@@ -130,6 +130,10 @@ local function create_packer_usercmds()
       attr.func(tbl)
     end, attr.opts)
   end
+
+  -- a handy abbreviation for PackerSync and PackerCompile
+  vim.cmd('cnoreabbrev pks PackerSync')
+  vim.cmd('cnoreabbrev pkc PackerCompile')
 end
 
 local function create_packer_autocmds()
