@@ -17,7 +17,6 @@ opt.ruler          = true
 opt.scrolloff      = 4
 opt.showtabline    = 0
 opt.signcolumn     = 'auto'
-opt.splitkeep      = 'screen'
 opt.splitright     = true
 opt.swapfile       = false
 opt.termguicolors  = true
