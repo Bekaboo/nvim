@@ -215,6 +215,10 @@ M['nvim-cmp'] = function()
     enabled = true,
     sources = { { name = 'buffer' } }
   })
+  cmp.setup.cmdline('?', {
+    enabled = true,
+    sources = { { name = 'buffer' } }
+  })
   -- Use cmdline & path source for ':'.
   cmp.setup.cmdline(':', {
     enabled = true,
