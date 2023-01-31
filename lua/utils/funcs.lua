@@ -67,7 +67,7 @@ function M.close_all_floatings(key)
 end
 
 function M.git_dir(path)
-  path = path and vim.fn.fnamemodify(path, ':p') or vim.fn.expand('%:p:h')
+  path = path and vim.fn.fnamemodify(path, ':p:h') or vim.fn.expand('%:p:h')
   local gitdir = vim.fn.system(string.format(
     'git -C %s rev-parse --show-toplevel', path))
   local isgitdir = vim.fn.matchstr(gitdir, '^fatal:.*') == ''
