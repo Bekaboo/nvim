@@ -6,9 +6,15 @@ function M.win_close_jmp()
   if '' ~= vim.api.nvim_win_get_config(0).relative then return end
   -- Record the window we jump from (previous) and to (current)
   if nil == vim.t.winid_rec then
-    vim.t.winid_rec = { prev = vim.fn.win_getid(), current = vim.fn.win_getid() }
+    vim.t.winid_rec = {
+      prev = vim.fn.win_getid(),
+      current = vim.fn.win_getid(),
+    }
   else
-    vim.t.winid_rec = { prev = vim.t.winid_rec.current, current = vim.fn.win_getid() }
+    vim.t.winid_rec = {
+      prev = vim.t.winid_rec.current,
+      current = vim.fn.win_getid(),
+    }
   end
   -- Loop through all windows to check if the previous one has been closed
   for winnr = 1, vim.fn.winnr('$') do
@@ -93,10 +99,10 @@ function M.proj_dir(path)
   end
 end
 
-function M.autocd()
-  local target_dir = M.proj_dir()
+function M.autocd(path)
+  local target_dir = M.proj_dir(path)
   if target_dir then
-    vim.cmd('lcd ' .. target_dir)
+    vim.cmd('cd | lcd ' .. target_dir)
   end
 end
 

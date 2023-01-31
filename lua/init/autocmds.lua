@@ -49,8 +49,8 @@ local autocmds = {
     { 'BufEnter' },
     {
       pattern = '*',
-      callback = function()
-        vim.defer_fn(require('utils.funcs').autocd, 10)
+      callback = function(tbl)
+        require('utils.funcs').autocd(tbl.file)
       end,
     },
   },
