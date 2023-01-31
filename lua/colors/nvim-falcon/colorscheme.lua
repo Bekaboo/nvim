@@ -12,7 +12,7 @@ sch.Cursor       = { fg = plt.space, bg = plt.white } -- Character under the cur
 sch.CursorColumn = { bg = plt.deepsea } -- Screen-column at the cursor, when 'cursorcolumn' is set.
 sch.CursorIM     = { bg = plt.flashlight, fg = plt.black } -- Like Cursor, but used when in IME mode |CursorIM|
 sch.CursorLine   = { bg = plt.ocean } -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-sch.CursorLineNr = { fg = plt.orange, bg = plt.ocean } -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+sch.CursorLineNr = { fg = plt.orange, bg = plt.ocean, bold = true } -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 sch.lCursor      = { link = 'Cursor' } -- Character under the cursor when |language-mapping| is used (see 'guicursor')
 sch.TermCursor   = { reverse = true } -- Cursor in a focused terminal
 sch.TermCursorNC = { bg = plt.smoke } -- Cursor in an unfocused terminal
