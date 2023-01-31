@@ -4,12 +4,9 @@ local function map(mappings)
   end
 end
 
-local function mapleader(key)
-  vim.keymap.set({ 'n', 'x', 'x' }, key, '')
-  vim.g.mapleader = vim.api.nvim_replace_termcodes(key, true, true, true)
-end
-
-mapleader('<Space>')
+vim.keymap.set({ 'n', 'x', 'x' }, '<Space>', '')
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 map({
   -- Multi-window operations
