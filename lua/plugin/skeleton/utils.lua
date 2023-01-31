@@ -135,7 +135,6 @@ function M.fallback(fallback_list)
   local proj_dir = require('utils.funcs').proj_dir(M.trigger_info.file) or ''
 
   local default_fallback = {
-    fname,
     fname .. '.skel',
     '.' .. fname .. '.skel',
     ft .. '.skel',
