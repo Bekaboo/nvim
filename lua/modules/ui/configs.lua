@@ -269,6 +269,7 @@ M['alpha-nvim'] = function()
   local dashboard_button_opts = {
     { { shortcut = 'e', hl = { { 'Tea', 2, 3 } } }, 'ﱐ  New file', '<cmd>ene<CR>' },
     { { shortcut = 's', hl = { { 'Pigeon', 2, 3 } } }, '  Sync plugins', '<cmd>PackerSync<CR>' },
+    { { shortcut = 'c', hl = { { 'Turquoise', 2, 3 } } }, '  Open Config Files', '<cmd>e ' .. vim.fn.stdpath('config') .. '<CR>' },
     { { shortcut = 'i', hl = { { 'Ochre', 2, 3 } } }, '  Git', '<cmd>ToggleTool lazygit<CR>' },
     { { shortcut = 'f f', hl = { { 'Flashlight', 2, 3 } } }, '  Find files', '<cmd>Telescope find_files<CR>' },
     { { shortcut = 'f o', hl = { { 'Smoke', 2, 3 } } }, '  Old files', '<cmd>Telescope oldfiles<CR>' },
