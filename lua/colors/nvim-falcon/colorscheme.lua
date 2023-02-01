@@ -215,7 +215,7 @@ sch.htmlSpecialTagName = { fg = plt.yellow }
 sch.htmlEndTag         = { fg = plt.yellow }
 sch.htmlH1             = { fg = plt.yellow, bold = true }
 sch.htmlH2             = { fg = plt.tea, bold = true }
-sch.htmlH3             = { fg = plt.skyblue, bold = true }
+sch.htmlH3             = { fg = plt.cerulean, bold = true }
 sch.htmlH4             = { fg = plt.lavender, bold = true }
 sch.htmlH5             = { fg = plt.purple, bold = true }
 sch.htmlH6             = { fg = plt.pink, bold = true }
