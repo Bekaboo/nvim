@@ -11,7 +11,6 @@ local function on_attach(client, bufnr)
     { 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>' },
     { 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>' },
     { 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>' },
-    { 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>' },
     { 'n', '<Leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>' },
     { 'n', '<Leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>' },
     { 'n', '<Leader>wd', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>' },
