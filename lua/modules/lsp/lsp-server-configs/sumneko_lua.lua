@@ -1,4 +1,4 @@
-local default_config = require('modules.lsp.lsp-server-configs.default')
+local default_config = require('modules.lsp.lsp-server-configs.shared.default')
 
 local function in_config_path(app)
   return string.format('%s/.config/%s',

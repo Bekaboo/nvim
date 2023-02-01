@@ -54,7 +54,7 @@ M['nvim-lspconfig'] = function()
     local status, config
       = pcall(require, 'modules.lsp.lsp-server-configs.' .. server_name)
     if not status then
-      return require('modules.lsp.lsp-server-configs.default')
+      return require('modules.lsp.lsp-server-configs.shared.default')
     else
       return config
     end
@@ -72,7 +72,7 @@ end
 
 M['clangd_extensions.nvim'] = function()
   local icons = require('utils.static').icons
-  local default_config = require('modules.lsp.lsp-server-configs.default')
+  local default_config = require('modules.lsp.lsp-server-configs.shared.default')
 
   require('clangd_extensions').setup({
     server = default_config,

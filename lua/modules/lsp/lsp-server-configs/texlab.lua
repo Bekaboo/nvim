@@ -1,4 +1,4 @@
-local default_config = require('modules.lsp.lsp-server-configs.default')
+local default_config = require('modules.lsp.lsp-server-configs.shared.default')
 
 local function on_attach(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
