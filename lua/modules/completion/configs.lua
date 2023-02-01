@@ -229,10 +229,6 @@ M['nvim-cmp'] = function()
   })
 end
 
-M['copilot-cmp'] = function()
-  require('copilot_cmp').setup()
-end
-
 M['copilot.lua'] = function()
   vim.defer_fn(function()
     if vim.g.loaded_coplilot then
