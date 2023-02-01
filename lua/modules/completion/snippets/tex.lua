@@ -23,7 +23,7 @@ local fmta = require('luasnip.extras.fmt').fmta
 local types = require('luasnip.util.types')
 local conds = require('luasnip.extras.expand_conditions')
 
-M.math = require('modules.completion.snippets.share.math')
+M.math = require('modules.completion.snippets.shared.math')
 
 M.env_standalone = {
   snip = funcs.add_attr({ condition = funcs.not_in_mathzone }, {
