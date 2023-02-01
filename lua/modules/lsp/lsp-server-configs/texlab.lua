@@ -47,4 +47,7 @@ end
 
 return vim.tbl_deep_extend('force', default_config, {
   on_attach = on_attach,
+  capabilities = {
+    offsetEncoding = { 'utf-8' },
+  },
 })
