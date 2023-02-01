@@ -84,3 +84,4 @@ cmd('colorscheme nvim-falcon')
 -- abbreviations
 cmd('cnoreabbrev qa qa!')
 cmd('cnoreabbrev bw bw!')
+cmd('cnoreabbrev mks mks! ~/.tmp/')
