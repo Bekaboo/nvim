@@ -1,6 +1,7 @@
 local M = {}
 
 M['vimtex'] = function()
+  vim.g.vimtex_format_enabled = 1
   vim.api.nvim_create_autocmd('FileType', {
     pattern = 'markdown',
     callback = function()
