@@ -1,5 +1,6 @@
 local M = {}
 local funcs = require('modules.completion.snippets.utils.funcs')
+local ifn = funcs.ifn
 local fn = vim.fn
 local ls = require('luasnip')
 local ls_types = require('luasnip.util.types')
@@ -31,13 +32,13 @@ M.env_standalone = {
 <indent><text>
 \end{<env>}
     ]] , {
-      indent = funcs.ifn(1),
+      indent = ifn(1),
       env = i(1),
       text = i(2),
     }, { repeat_duplicates = true })),
     s({ trig = 'cs' }, {
       t { '\\begin{equation}', '\\begin{cases}', '' },
-      funcs.ifn(1),
+      ifn(1),
       i(1),
       t { '', '\\end{cases}', '\\end{equation}' }
     }),
@@ -47,7 +48,7 @@ M.env_standalone = {
 \end{<env>}
     ]], {
       env = c(1, { i(nil, 'align*'), i(nil, 'align') }),
-      indent = funcs.ifn(1),
+      indent = ifn(1),
       text = i(2),
     }, { repeat_duplicates = true })),
     s({ trig = 'eqt' }, fmta([[
@@ -56,7 +57,7 @@ M.env_standalone = {
 \end{<env>}
     ]], {
       env = c(1, { i(nil, 'equation*'), i(nil, 'equation') }),
-      indent = funcs.ifn(1),
+      indent = ifn(1),
       text = i(2),
     }, { repeat_duplicates = true })),
   }),
@@ -65,7 +66,11 @@ M.env_standalone = {
 M.style = {
   snip = funcs.add_attr({ condition = funcs.not_in_mathzone }, {
     s({ trig = 'm' } , { t '$', i(1), t '$' }),
-    s({ trig = 'M' } , { t { '\\[', '' }, i(1), t { '', '\\]' } }),
+    s({ trig = 'M' } , {
+      t { '\\[', '' },
+      ifn(1), i(1),
+      t { '', '\\]' }
+    }),
     s({ trig = 'e' } , { t '\\emph{', i(1), t '}' }),
     s({ trig = 'b' }, { t '\\textbf{', i(1), t '}' }),
     s({ trig = 'B' }, { t '\\textbf{\\textit{', i(1), t '}}' }),

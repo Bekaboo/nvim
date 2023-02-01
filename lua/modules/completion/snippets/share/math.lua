@@ -1,4 +1,5 @@
 local funcs = require('modules.completion.snippets.utils.funcs')
+local ifn = funcs.ifn
 local fn = vim.fn
 local ls = require('luasnip')
 local ls_types = require('luasnip.util.types')
@@ -116,7 +117,7 @@ local math_snippets = {
 <indent><el><underscore>{<height><comma>0} & <el><underscore>{<height><comma>1} & \ldots & <el><underscore>{<height><comma><width>} \\
 \end{bmatrix}
       ]], {
-        indent = funcs.ifn(1),
+        indent = ifn(1),
         el = i(1, 'a'),
         height = i(2, 'N-1'),
         width = i(3, 'M-1'),
@@ -133,6 +134,7 @@ local math_snippets = {
     s({ trig = 'msrc' }, { t '\\mathsrc{', i(1), t '}', i(0) }),
     s({ trig = 'mbb' }, { t '\\mathbb{', i(1), t '}', i(0) }),
     s({ trig = 'mbf' }, { t '\\mathbf{', i(1), t '}', i(0) }),
+    s({ trig = 'mff' }, { t '\\mff{', i(1), t '}', i(0) }),
     s({ trig = 'mrm' }, { t '\\mathrm{', i(1), t '}', i(0) }),
     s({ trig = 'xx' }, { t '\\times ', i(0) }),
     s({ trig = '**' }, { t '\\cdot ', i(0) }),
@@ -262,15 +264,15 @@ local math_snippets = {
     s({ trig = 'cl' }, { t '\\left\\lceil ', i(1), t ' \\right\\rceil', i(0) }),
     s({ trig = 'bmat' }, { t '\\begin{bmatrix} ', i(1), t ' \\end{bmatrix}', i(0) }),
     s({ trig = 'pmat' }, { t '\\begin{pmatrix} ', i(1), t ' \\end{pmatrix}', i(0) }),
-    s({ trig = 'Bmat' }, { t { '\\begin{bmatrix}', '' }, funcs.ifn(1), i(1), t { '', '\\end{bmatrix}', '' } }),
-    s({ trig = 'Pmat' }, { t { '\\begin{pmatrix}', '' }, funcs.ifn(1), i(1), t { '', '\\end{pmatrix}', '' } }),
+    s({ trig = 'Bmat' }, { t { '\\begin{bmatrix}', '' }, ifn(1), i(1), t { '', '\\end{bmatrix}', '' } }),
+    s({ trig = 'Pmat' }, { t { '\\begin{pmatrix}', '' }, ifn(1), i(1), t { '', '\\end{pmatrix}', '' } }),
     s({ trig = 'aln' }, fmta([[
 \begin{<env>}
 <indent><text>
 \end{<env>}
     ]], {
       env = c(1, { i(nil, 'aligned'), i(nil, 'align*'), i(nil, 'align') }),
-      indent = funcs.ifn(1),
+      indent = ifn(1),
       text = i(2),
     }, { repeat_duplicates = true })),
     s({ trig = 'eqt' }, fmta([[
@@ -279,10 +281,10 @@ local math_snippets = {
 \end{<env>}
     ]], {
       env = c(1, { i(nil, 'equation*'), i(nil, 'equation') }),
-      indent = funcs.ifn(1),
+      indent = ifn(1),
       text = i(2),
     }, { repeat_duplicates = true })),
-    s({ trig = 'cs' }, { t { '\\begin{cases}', '' }, funcs.ifn(1), i(1), t { '', '\\end{cases}' } }, i(0)),
+    s({ trig = 'cs' }, { t { '\\begin{cases}', '' }, ifn(1), i(1), t { '', '\\end{cases}' } }, i(0)),
     s({ trig = 'part' }, { t { '\\frac{\\partial ' }, i(1), t { '}{\\partial ' }, i(2), t { '}' }, i(0) }),
     s({ trig = 'diff' }, { t '\\frac{\\mathrm{d}', i(1), t '}{\\mathrm{d}', i(2), t '} ', i(0) }),
     s({ trig = 'int', priority = 998 }, { t '\\int_{', i(1), t '}^{', i(2), t '} ', i(0) }),
@@ -296,7 +298,7 @@ local math_snippets = {
 <indent><text>
 \end{<env>}
     ]] , {
-      indent = funcs.ifn(1),
+      indent = ifn(1),
       env = i(1),
       text = i(2),
     }, { repeat_duplicates = true })),

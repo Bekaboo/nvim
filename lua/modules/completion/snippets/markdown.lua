@@ -1,5 +1,6 @@
 local M = {}
 local funcs = require('modules.completion.snippets.utils.funcs')
+local ifn = funcs.ifn
 local fn = vim.fn
 local ls = require('luasnip')
 local ls_types = require('luasnip.util.types')
@@ -34,10 +35,10 @@ M.format = {
     s('package', {
       t { '---', '' },
       t { 'header-includes:', '' },
-      funcs.ifn(1), t { '- \\usepackage{gensymb}', '' },
-      funcs.ifn(1), t { '- \\usepackage{amsmath}', '' },
-      funcs.ifn(1), t { '- \\usepackage{amssymb}', '' },
-      funcs.ifn(1), t { '- \\usepackage{mathtools}', '' },
+      ifn(1), t { '- \\usepackage{gensymb}', '' },
+      ifn(1), t { '- \\usepackage{amsmath}', '' },
+      ifn(1), t { '- \\usepackage{amssymb}', '' },
+      ifn(1), t { '- \\usepackage{mathtools}', '' },
       t { '---', '' },
     }),
   }),
@@ -46,7 +47,11 @@ M.format = {
 M.markers = {
   snip = funcs.add_attr({ condition = funcs.not_in_mathzone }, {
     s({ trig = 'm' } , { t '$', i(1), t '$' }),
-    s({ trig = 'M' } , { t { '$$', '' }, i(1), t { '', '$$' } }),
+    s({ trig = 'M' } , {
+      t { '$$', '' },
+      ifn(1), i(1),
+      t { '', '$$' }
+    }),
     s({ trig = 'e' } , { t '*', i(1), t '*', i(0) }),
     s({ trig = 'b' }, { t '**', i(1), t '**', i(0) }),
     s({ trig = 'B' }, { t '***', i(1), t '***', i(0) }),

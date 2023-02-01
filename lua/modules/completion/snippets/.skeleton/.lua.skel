@@ -1,5 +1,6 @@
 local M = {}
 local funcs = require('modules.completion.snippets.utils.funcs')
+local ifn = funcs.ifn
 local fn = vim.fn
 local ls = require('luasnip')
 local ls_types = require('luasnip.util.types')
