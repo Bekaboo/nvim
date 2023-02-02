@@ -610,7 +610,14 @@ M['nvim-navic'] = function()
 end
 
 M['indent-blankline.nvim'] = function()
-  vim.o.list = false
+  vim.opt.listchars = {
+    tab        = '→ ',
+    extends    = '…',
+    precedes   = '…',
+    nbsp       = '⌴',
+    trail      = '·',
+    multispace = '·'
+  }
   require('indent_blankline').setup({
     show_current_context = false,
     show_trailing_blankline_indent = false,
