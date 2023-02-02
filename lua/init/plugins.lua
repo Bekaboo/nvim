@@ -18,7 +18,7 @@ else
   manage_plugins({
     config = {
       display = {
-        open_cmd = '20new \\[packer\\]',
+        open_cmd = 'tabnew \\[packer\\]',
         working_sym = '',
         error_sym = '',
         done_sym = '',
