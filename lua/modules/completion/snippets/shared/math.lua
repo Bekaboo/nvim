@@ -353,7 +353,7 @@ local math_snippets = {
     s({ trig = 'Var' }, { t '\\mathrm{Var}\\left(', i(1, 'X'), t '\\right)' }),
     s({ trig = 'MSE' }, { t '\\mathrm{MSE}' }),
     s({ trig = 'bys', dscr = 'Bayes Formula' },
-      fmta('\\frac{P(<cond_x> \\mid <cond_y>) P(<cond_y>)}{P(<cond_y>)}', {
+      fmta('\\frac{P(<cond_x> \\mid <cond_y>) P(<cond_y>)}{P(<cond_x>)}', {
         cond_x = i(2, 'X=x'),
         cond_y = i(1, 'Y=y'),
     }, { repeat_duplicates = true })),
