@@ -3,4 +3,6 @@
 !.git/
 !.gitignore
 !.editorconfig
+!.skeleton/
+!*.skel
 spell/

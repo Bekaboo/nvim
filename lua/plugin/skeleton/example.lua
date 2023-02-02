@@ -6,6 +6,12 @@ require('plugin.skeleton').setup({
     empty_files = true,           -- apply skeleton to empty existing files
   },
   rules = {
+    -- rules for files without filetype
+    [''] = {
+      ['.*%.scripts/'] = function(fallback)
+        return fallback({ 'sh.skel', '.sh.skel' })
+      end
+    },
     -- rules for lua files
     lua = {
       -- use a function that returns a string to specify
