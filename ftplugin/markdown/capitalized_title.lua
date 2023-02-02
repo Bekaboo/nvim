@@ -1,5 +1,30 @@
 local api = vim.api
 
+local lowercase_words = {
+  ['a'] = true,
+  ['an'] = true,
+  ['and'] = true,
+  ['as'] = true,
+  ['at'] = true,
+  ['but'] = true,
+  ['by'] = true,
+  ['for'] = true,
+  ['if'] = true,
+  ['in'] = true,
+  ['nor'] = true,
+  ['of'] = true,
+  ['off'] = true,
+  ['on'] = true,
+  ['or'] = true,
+  ['per'] = true,
+  ['so'] = true,
+  ['the'] = true,
+  ['to'] = true,
+  ['up'] = true,
+  ['via'] = true,
+  ['yet'] = true,
+}
+
 ---Given current line, determine if it is a title line
 ---@param current_line string current line
 ---@return boolean
@@ -40,8 +65,11 @@ end
 ---@param col number current cursor position (column)
 local function correct_word_before(line, col)
   local word_before = line:sub(1, col - 1):match('%w+$')
-  if word_before ~= nil
-    and #word_before < 4
+  if word_before == nil then
+    return
+  end
+
+  if (#word_before <= 2 or lowercase_words[word_before:lower()])
     and not first_word(line, col, word_before)
     and not word_before:match('^%u%u+$')
   then
