@@ -3,7 +3,6 @@ local fn = vim.fn
 local g = vim.g
 local opt = vim.opt
 
-opt.cmdheight      = 0
 opt.cursorline     = true
 opt.eb             = false
 opt.foldlevelstart = 99
