@@ -58,5 +58,25 @@ M.markers = {
   }),
 }
 
+M.titles = {
+  snip = funcs.add_attr({ condition = funcs.not_in_mathzone }, {
+    s({ trig = 'h1' }, { t '# ', i(1), t ' #' }),
+    s({ trig = 'h2' }, { t '## ', i(1), t ' ##' }),
+    s({ trig = 'h3' }, { t '### ', i(1), t ' ###' }),
+    s({ trig = 'h4' }, { t '#### ', i(1), t ' ####' }),
+    s({ trig = 'h5' }, { t '##### ', i(1), t ' #####' }),
+    s({ trig = 'h6' }, { t '###### ', i(1), t ' ######' }),
+  }),
+}
+
+M.theorems = {
+  snip = funcs.add_attr({ condition = funcs.not_in_mathzone }, {
+    s({ trig = 'theo' }, { t '***', i(1, 'Theorem'), t '***' }),
+    s({ trig = 'def' }, { t '***', i(1, 'Definition'), t '***' }),
+    s({ trig = 'pro' }, { t '***', i(1, 'Proof'), t '***' }),
+    s({ trig = 'lem' }, { t '***', i(1, 'Lemma'), t '***' }),
+  }),
+}
+
 
 return M
