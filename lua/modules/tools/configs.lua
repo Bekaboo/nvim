@@ -43,6 +43,7 @@ M['telescope.nvim'] = function()
   vim.keymap.set('n', '<Leader>fS', function() telescope_builtin.lsp_workspace_symbols() end, keymap_opts)
   vim.keymap.set('n', '<Leader>fg', function() telescope_builtin.git_status() end, keymap_opts)
   vim.keymap.set('n', '<Leader>fm', function() telescope_builtin.marks() end, keymap_opts)
+  vim.keymap.set('n', '<Leader>fu', function() telescope.extensions.undo.undo() end, keymap_opts)
 
   telescope.setup({
     defaults = {
@@ -81,15 +82,7 @@ M['telescope.nvim'] = function()
 
   -- load telescope extensions
   telescope.load_extension('fzf')
-end
-
-M['undotree'] = function()
-  vim.g.undotree_SplitWidth = 30
-  vim.g.undotree_ShortIndicators = 1
-  vim.g.undotree_WindowLayout = 3
-  vim.g.undotree_DiffpanelHeight = 16
-  vim.g.undotree_SetFocusWhenToggle = 1
-  vim.api.nvim_set_keymap('n', '<Leader>u', '<cmd>UndotreeToggle<CR>', { noremap = true })
+  telescope.load_extension('undo')
 end
 
 M['vim-floaterm'] = function()

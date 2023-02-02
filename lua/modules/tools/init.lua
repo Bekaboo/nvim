@@ -22,7 +22,7 @@ M['telescope.nvim'] = {
     '<Leader>f*', '<Leader>fh', '<Leader>fm', '<Leader>fb',
     '<Leader>fr', '<Leader>fa', '<Leader>fe', '<Leader>fp',
     '<Leader>fs', '<Leader>fS', '<Leader>fg', '<Leader>fm',
-    '<Leader>fd'
+    '<Leader>fd', '<Leader>fu',
   },
   requires = {
     'plenary.nvim',
@@ -40,11 +40,10 @@ M['telescope-fzf-native.nvim'] = {
   requires = 'telescope.nvim',
 }
 
-M['undotree'] = {
-  'mbbill/undotree',
-  keys = '<Leader>u',
-  cmd = { 'UndotreeToggle', 'UndotreeShow' },
-  config = configs['undotree'],
+M['telescope-undo.nvim'] = {
+  'debugloop/telescope-undo.nvim',
+  module = 'telescope._extensions.undo',
+  requires = { 'plenary.nvim', 'telescope.nvim' },
 }
 
 M['vim-floaterm'] = {
