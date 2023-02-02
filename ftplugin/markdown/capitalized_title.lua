@@ -19,6 +19,7 @@ local lowercase_words = {
   ['per'] = true,
   ['so'] = true,
   ['the'] = true,
+  ['than'] = true,
   ['to'] = true,
   ['up'] = true,
   ['via'] = true,
