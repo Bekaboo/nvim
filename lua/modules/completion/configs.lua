@@ -294,10 +294,13 @@ M['LuaSnip'] = function()
         current_end[1] = current_end[1] + 1     -- (1, 0) indexed
         local cursor = vim.api.nvim_win_get_cursor(0)
 
-        if cursor[1] < current_start[1]
-          or cursor[1] > current_end[1]
-          or cursor[2] < current_start[2]
-          or cursor[2] > current_end[2]
+        if (cursor[1] < current_start[1]
+            or cursor[1] > current_end[1]
+            or cursor[2] < current_start[2]
+            or cursor[2] > current_end[2])
+          or (current_start[1] == current_end[1]
+              and current_start[2] == current_end[2]
+              and current_node:get_jump_index() == 0)
         then
           ls.unlink_current()
         end
