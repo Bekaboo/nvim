@@ -76,9 +76,7 @@ function M.git_dir(path)
 end
 
 function M.proj_dir(path)
-  if path == '' then
-    return vim.fn.getcwd()
-  end
+  if path == '' then return end
 
   local target_dir = M.git_dir(path)
   if not target_dir then
