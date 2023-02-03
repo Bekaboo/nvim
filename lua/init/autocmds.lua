@@ -28,7 +28,7 @@ local autocmds = {
 
   -- Jump to last accessed window on closing the current one
   {
-    { 'VimEnter', 'WinEnter' },
+    { 'WinEnter' },
     {
       pattern = '*',
       callback = function() require('utils.funcs').win_close_jmp() end,
