@@ -81,4 +81,11 @@ M['limelight.vim'] = {
   config = configs['limelight.vim'],
 }
 
+M['aerial.nvim'] = {
+  'stevearc/aerial.nvim',
+  keys = '<Leader>o',
+  cmd = { 'AerialToggle', 'AerialOpen', 'AerialOpenAll' },
+  config = configs['aerial.nvim'],
+}
+
 return M

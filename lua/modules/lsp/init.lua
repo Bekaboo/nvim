@@ -23,13 +23,6 @@ M['mason-lspconfig.nvim'] = {
   config = configs['mason-lspconfig.nvim'],
 }
 
-M['aerial.nvim'] = {
-  'stevearc/aerial.nvim',
-  keys = '<Leader>o',
-  cmd = { 'AerialToggle', 'AerialOpen', 'AerialOpenAll' },
-  config = configs['aerial.nvim'],
-}
-
 M['fidget.nvim'] = {
   'j-hui/fidget.nvim',
   after = 'nvim-lspconfig',
