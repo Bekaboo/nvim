@@ -489,6 +489,10 @@ sch.texMathStyleConcArg   = { fg = plt.pigeon }
 sch.texMathZoneEnvStarred = { fg = plt.pigeon }
 
 
+-- copilot.lua
+sch.CopilotSuggestion = { fg = plt.steel, italic = true }
+sch.CopilotAnnotation = { fg = plt.steel, italic = true }
+
 -- Extra highlight groups
 sch.Yellow     = { fg = plt.yellow }
 sch.Earth      = { fg = plt.earth }
