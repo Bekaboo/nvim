@@ -75,13 +75,12 @@ function M.git_dir(path)
   return vim.trim(gitdir)
 end
 
-function M.proj_dir(path)
-  if vim.bo.buftype ~= '' or
-      '' ~= vim.api.nvim_win_get_config(0).relative then
-    return
+function M.proj_dir(tbl)
+  if tbl.file == '' then
+    return vim.fn.getcwd()
   end
-  path = path and vim.fn.fnamemodify(path, ':p') or vim.fn.expand('%:p:h')
-  local target_dir = M.git_dir(path)
+
+  local target_dir = M.git_dir(tbl.file)
   if not target_dir then
     target_dir = vim.fn.fnamemodify(vim.fs.find({
       '.svn',
@@ -92,17 +91,10 @@ function M.proj_dir(path)
       '.sln',
       '.vcxproj',
       '.editorconfig',
-    }, { path = path, upward=true })[1] or vim.fn.expand('%'), ':p:h')
+    }, { path = tbl.file, upward=true })[1], ':p:h')
   end
   if target_dir and vim.fn.isdirectory(target_dir) ~= 0 then
     return target_dir
-  end
-end
-
-function M.autocd(path)
-  local target_dir = M.proj_dir(path)
-  if target_dir then
-    vim.cmd('cd | lcd ' .. target_dir)
   end
 end
 

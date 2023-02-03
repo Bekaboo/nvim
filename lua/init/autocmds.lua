@@ -46,11 +46,11 @@ local autocmds = {
 
   -- Automatically change local current directory
   {
-    { 'BufEnter' },
+    { 'BufWinEnter' },
     {
       pattern = '*',
       callback = function(tbl)
-        require('utils.funcs').autocd(tbl.file)
+        vim.cmd.lcd(require('utils.funcs').proj_dir(tbl.file))
       end,
     },
   },
