@@ -71,6 +71,10 @@ map({
   { 'c', '<C-k>', '<C-\\>e(strpart(getcmdline(), 0, getcmdpos() - 1))<CR>' },
   { '!', '<C-d>', '<Del>' },
 
+  -- Correct misspelled word / mark as correct
+  { 'i', '<C-l>', '<C-G>u<Esc>[s1z=`]a<C-G>u' },
+  { 'i', '<C-S-L>', '<Esc>[szg`]a' },
+
   -- Enter normal mode from arbitrary mode
   { { 'n', 't', 'v', 'i', 'c' }, '<M-\\>', '<C-\\><C-n>' },
 
