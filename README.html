@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/home/zeng/.scripts/css/pandoc.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="neovim-m-λ-c-r-o">Neovim :: M Λ C R O</h2>
+<p><strong>Neovim :: M Λ C R O</strong> is a collection of Neovim
+configuration files inspired by <a
+href="https://github.com/rougier/nano-emacs">Emacs / N Λ N O</a>.</p>
+<p>The goal of macro-neovim is to provide a clean and elegant user
+interface while remaining practical for daily tasks, striking a balance
+between a streamlined design and effective functionality. See <a
+href="#showcases">showcases</a> to get a glimpse of the basic usage and
+what this configuration looks like.</p>
+<p>This is a highly personalized and opinionated Neovim configuration,
+not a distribution. While it’s not meant for direct use, you’re welcome
+to fork, experiment, and adapt it to your liking. Feel free to use it as
+a starting point for your configuration or borrow elements you find
+useful. Issues and PRs are welcome.</p>
+<center>
+<img src="https://github.com/Bekaboo/nvim/assets/76579810/299137e7-9438-489b-b98b-7211a62678ae" width=46%>  
+<img src="https://github.com/Bekaboo/nvim/assets/76579810/9e546e33-7678-47e2-8a80-368d7c59534a" width=46%>
+</center>
+<h2 id="table-of-contents">Table of Contents</h2>
+<!--toc:start-->
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#requirements-and-dependencies">Requirements and
+Dependencies</a>
+<ul>
+<li><a href="#basic">Basic</a></li>
+<li><a href="#tree-sitter">Tree-sitter</a></li>
+<li><a href="#lsp">LSP</a></li>
+<li><a href="#dap">DAP</a></li>
+<li><a href="#formatter">Formatter</a></li>
+<li><a href="#other-external-tools">Other External Tools</a></li>
+</ul></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#config-structure">Config Structure</a></li>
+<li><a href="#tweaking-this-configuration">Tweaking this
+Configuration</a>
+<ul>
+<li><a href="#managing-plugins-with-modules">Managing Plugins with
+Modules</a></li>
+<li><a href="#installing-packages-to-an-existing-module">Installing
+Packages to an Existing Module</a></li>
+<li><a href="#installing-packages-to-a-new-module">Installing Packages
+to a New Module</a></li>
+<li><a href="#general-settings-and-options">General Settings and
+Options</a></li>
+<li><a href="#keymaps">Keymaps</a></li>
+<li><a href="#colorschemes">Colorschemes</a></li>
+<li><a href="#auto-commands">Auto Commands</a></li>
+<li><a href="#lsp-server-configurations">LSP Server
+Configurations</a></li>
+<li><a href="#dap-configurations">DAP Configurations</a></li>
+<li><a href="#snippets">Snippets</a></li>
+<li><a href="#enabling-vscode-integration">Enabling VSCode
+Integration</a></li>
+</ul></li>
+<li><a href="#appendix">Appendix</a>
+<ul>
+<li><a href="#showcases">Showcases</a></li>
+<li><a href="#default-modules-and-plugins-of-choice">Default Modules and
+Plugins of Choice</a>
+<ul>
+<li><a href="#third-party-plugins">Third Party Plugins</a></li>
+<li><a href="#local-plugins">Local Plugins</a></li>
+</ul></li>
+<li><a href="#startuptime">Startuptime</a> <!--toc:end--></li>
+</ul></li>
+</ul>
+<h2 id="features">Features</h2>
+<ul>
+<li>Modular design
+<ul>
+<li>Install and manage packages in groups</li>
+<li>Make it easy to use different set of configuration for different use
+cases</li>
+</ul></li>
+<li>Clean and uncluttered UI, including customized versions of:
+<ul>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/lua/plugin/winbar">winbar</a></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/blob/master/plugin/statusline.lua">statusline</a></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/blob/master/plugin/statuscolumn.lua">statuscolumn</a></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/colors">colorschemes</a></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/blob/master/plugin/intro.lua">intro
+message</a></li>
+</ul></li>
+<li><a
+href="https://github.com/vscode-neovim/vscode-neovim">VSCode-Neovim</a>
+integration
+<ul>
+<li>Feels at home in VSCode when you occasionally need it</li>
+</ul></li>
+<li>Massive <a
+href="https://github.com/Bekaboo/nvim/blob/master/lua/snippets/shared/math.lua">TeX
+math snippets</a></li>
+<li>Show images in markdown files (requires <a
+href="https://github.com/kovidgoyal/kitty">Kitty terminal</a>)</li>
+<li>Editing Jupyter Notebooks like markdown files, run code in cells
+with simple command and shortcuts</li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/lua/configs">Fine-tuned
+plugins</a> with <a
+href="https://github.com/Bekaboo/nvim/tree/master/patches">custom
+patches</a></li>
+<li>Optimized for large files, open any file larger than 100 MB and edit
+like butter</li>
+<li>Fast startup around <a href="#startuptime">~35 ms</a></li>
+</ul>
+<h2 id="requirements-and-dependencies">Requirements and
+Dependencies</h2>
+<h3 id="basic">Basic</h3>
+<ul>
+<li><a href="https://github.com/neovim/neovim">Neovim</a>
+<strong><em>nightly</em></strong>, for exact version see <a
+href="https://github.com/Bekaboo/nvim/blob/master/nvim-version.txt">nvim-version.txt</a></li>
+<li><a href="https://git-scm.com/">Git</a></li>
+<li>A decent terminal emulator</li>
+<li>A nerd font, e.g. <a
+href="https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono">JetbrainsMono
+Nerd Font</a></li>
+</ul>
+<h3 id="tree-sitter">Tree-sitter</h3>
+<p>Tree-sitter installation and configuration is handled by <a
+href="https://github.com/nvim-treesitter/nvim-treesitter">nvim-treesitter</a>.</p>
+<p>To add or remove support for a language, install or uninstall the
+corresponding parser using <code>:TSInstall</code> or
+<code>:TSUninstall</code>.</p>
+<p>To make the change permanent, add or remove corresponding entries in
+<code>M.langs</code> in <a
+href="https://github.com/Bekaboo/nvim/blob/master/lua/utils/static.lua">lua/utils/static.lua</a>.</p>
+<h3 id="lsp">LSP</h3>
+<p>For LSP support, install the following language servers manually use
+your favorite package manager:</p>
+<ul>
+<li><p>Bash: install <a
+href="https://github.com/bash-lsp/bash-language-server">BashLS</a></p>
+<p>Example for ArchLinux users:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> pacman <span class="at">-S</span> bash-language-server</span></code></pre></div></li>
+<li><p>C/C++: install <a
+href="https://clang.llvm.org/">Clang</a></p></li>
+<li><p>Lua: install <a
+href="https://github.com/LuaLS/lua-language-server">LuaLS</a></p>
+<ul>
+<li>Python: install <a
+href="https://github.com/pappasam/jedi-language-server">Jedi Language
+Server</a></li>
+</ul></li>
+<li><p>Rust: install <a href="https://rust-analyzer.github.io/">Rust
+Analyzer</a></p></li>
+<li><p>LaTeX: install <a
+href="https://github.com/latex-lsp/texlab">TexLab</a></p></li>
+<li><p>VimL: install <a
+href="https://github.com/iamcco/vim-language-server">VimLS</a></p></li>
+<li><p>Markdown: install <a
+href="https://github.com/artempyanykh/marksman">Marksman</a></p></li>
+<li><p>*General-purpose LSP: install <a
+href="https://github.com/mattn/efm-langserver">EFM Language
+Server</a></p>
+<ul>
+<li>Already configured for <a
+href="https://github.com/psf/black">Black</a>, <a
+href="https://github.com/mvdan/sh">Shfmt</a>, and <a
+href="https://github.com/JohnnyMorganz/StyLua">StyLua</a></li>
+<li>Find configuration in <a
+href="https://github.com/Bekaboo/nvim/tree/master/lua/configs/lsp-server-configs/_servers/efm.lua">lua/configs/lsp-server-configs/_servers/efm.lua</a></li>
+</ul></li>
+</ul>
+<p>To add support for other languages, install corresponding LS manually
+and append the language and its language server to <code>M.langs</code>
+in <a
+href="https://github.com/Bekaboo/nvim/blob/master/lua/utils/static.lua">lua/utils/static.lua</a>
+so that <a
+href="https://github.com/neovim/nvim-lspconfig">nvim-lspconfig</a> will
+pick them up.</p>
+<h3 id="dap">DAP</h3>
+<p>Install the following debug adapters manually:</p>
+<ul>
+<li><p>Bash:</p>
+<p>Go to <a
+href="https://github.com/rogalmic/vscode-bash-debug/releases">vscode-bash-debug
+release page</a>, download the latest release
+(<code>bash-debug-x.x.x.vsix</code>), extract (change the extension from
+<code>.vsix</code> to <code>.zip</code> then unzip it) the contents to a
+new directory <code>vscode-bash-debug/</code> and put it under stdpath
+<code>data</code> (see <code>:h stdpath</code>).</p>
+<p>Make sure <code>node</code> is executable.</p></li>
+<li><p>C/C++: install <a
+href="https://github.com/vadimcn/codelldb">CodeLLDB</a>.</p>
+<p>Example for ArchLinux users:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yay</span> <span class="at">-S</span> codelldb     <span class="co"># Install from AUR</span></span></code></pre></div></li>
+<li><p>Python: install <a
+href="https://github.com/microsoft/debugpy">DebugPy</a></p>
+<p>Example for ArchLinux users:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> pacman <span class="at">-S</span> python-debugpy</span></code></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--local</span> debugpy <span class="co"># Install to user&#39;s home directory</span></span></code></pre></div></li>
+</ul>
+<h3 id="formatter">Formatter</h3>
+<ul>
+<li>Bash: install <a href="https://github.com/mvdan/sh">Shfmt</a></li>
+<li>C/C++: install <a href="https://clang.llvm.org/">Clang</a> to use
+<code>clang-format</code></li>
+<li>Lua: install <a
+href="https://github.com/JohnnyMorganz/StyLua">StyLua</a></li>
+<li>Rust: install <a
+href="https://www.rust-lang.org/tools/install">Rust</a> to use
+<code>rustfmt</code></li>
+<li>Python: install <a
+href="https://github.com/psf/black">Black</a></li>
+<li>LaTeX: install <a href="http://tug.org/texlive/">texlive-core</a> to
+use <code>latexindent</code></li>
+</ul>
+<h3 id="other-external-tools">Other External Tools</h3>
+<ul>
+<li><a href="https://github.com/sharkdp/fd">Fd</a>, <a
+href="https://github.com/BurntSushi/ripgrep">Ripgrep</a>, and <a
+href="https://github.com/junegunn/fzf">Fzf</a> for fuzzy search</li>
+<li><a href="https://pandoc.org/">Pandoc</a>, <a
+href="https://github.com/Bekaboo/dot/tree/master/.scripts">custom
+scripts</a> and <a href="https://www.tug.org/texlive/">TexLive</a> (for
+ArchLinux users, it is <code>texlive-core</code> and
+<code>texlive-extra</code>) for markdown → PDF conversion
+(<code>:MarkdownToPDF</code>)</li>
+<li><a href="https://www.drawio.com/blog/diagrams-offline">Draw.io
+desktop</a> for creating and inserting simple PNG diagrams in markdown
+files (<code>:MarkdownInsertImage</code>)</li>
+<li><a href="https://nodejs.org/en">Node.js</a> for installing
+dependencies for <a
+href="https://github.com/iamcco/markdown-preview.nvim">markdown-preview.nvim</a></li>
+<li><a href="https://github.com/luarocks/luarocks">Luarocks</a> for
+installing dependencies for <a
+href="https://github.com/3rd/image.nvim">image.nvim</a></li>
+<li><a href="https://github.com/mwouts/jupytext">Jupytext</a> and <a
+href="https://github.com/neovim/pynvim">Pynvim</a> for editing Jupyter
+notebooks</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<ol type="1">
+<li><p>Make sure you have required dependencies installed.</p></li>
+<li><p>Clone this repo to your config directory</p>
+<pre><code>git clone https://github.com/Bekaboo/nvim ~/.config/nvim-macro</code></pre></li>
+<li><p>Open neovim using</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">NVIM_APPNAME</span><span class="op">=</span>nvim-macro <span class="ex">nvim</span></span></code></pre></div>
+<p>On first installation, neovim will prompt you to decide whether to
+install third-party plugins, press <code>y</code> to install,
+<code>n</code> to skip, <code>never</code> to skip and disable the
+prompt in the future (aka “do not ask again”).</p></li>
+<li><p>After entering neovim, Run <code>:checkhealth</code> to check
+potential dependency issues.</p></li>
+<li><p>Enjoy!</p></li>
+</ol>
+<h2 id="config-structure">Config Structure</h2>
+<pre><code>.
+├── colors                      # colorschemes
+├── plugin                      # custom plugins
+├── ftplugin                    # custom filetype plugins
+├── init.lua                    # entry of config
+├── lua
+│   ├── core                    # files under this folder is required by &#39;init.lua&#39;
+│   │   ├── autocmds.lua
+│   │   ├── general.lua         # options and general settings
+│   │   ├── keymaps.lua
+│   │   └── packages.lua        # bootstraps package manager and specifies what packages to include
+│   ├── modules                 # all plugin specifications and configs go here
+│   │   ├── lib.lua             # plugin specifications in module &#39;lib&#39;
+│   │   ├── completion.lua      # plugin specifications in module &#39;completion&#39;
+│   │   ├── debug.lua           # plugin specifications in modules &#39;debug&#39;
+│   │   ├── lsp.lua             # plugin specifications in module &#39;lsp&#39;
+│   │   ├── markup.lua          # ...
+│   │   ├── misc.lua
+│   │   ├── tools.lua
+│   │   ├── treesitter.lua
+│   │   └── colorschemes.lua
+│   ├── configs                 # configs for each plugin
+│   ├── snippets                # snippets
+│   ├── plugin                  # the actual implementation of custom plugins
+│   └── utils
+└── syntax                      # syntax files</code></pre>
+<h2 id="tweaking-this-configuration">Tweaking this Configuration</h2>
+<h3 id="managing-plugins-with-modules">Managing Plugins with
+Modules</h3>
+<p>In order to enable or disable a module, one need to change the table
+in <a
+href="https://github.com/Bekaboo/nvim/blob/master/lua/core/packages.lua">lua/core/packages.lua</a>
+passed to <code>manage_plugins()</code>, for example</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode lua"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>enable_modules<span class="op">({</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;lib&#39;</span><span class="op">,</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;treesitter&#39;</span><span class="op">,</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;edit&#39;</span><span class="op">,</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- ...</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div>
+<p>the format of argument passed to <code>manage_plugins</code> is the
+same as that passed to lazy.nvim’s setup function.</p>
+<h3 id="installing-packages-to-an-existing-module">Installing Packages
+to an Existing Module</h3>
+<p>To install plugin <code>foo</code> under module <code>bar</code>,
+just insert the corresponding specification to the big table
+<code>lua/modules/bar.lua</code> returns, for instance,</p>
+<p><code>lua/modules/bar.lua</code>:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode lua"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- ...</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;foo/foo&#39;</span><span class="op">,</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">dependencies</span> <span class="op">=</span> <span class="st">&#39;foo_dep&#39;</span><span class="op">,</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="installing-packages-to-a-new-module">Installing Packages to a
+New Module</h3>
+<p>To install plugin <code>foo</code> under module <code>bar</code>, one
+should first create module <code>bar</code> under <a
+href="https://github.com/Bekaboo/nvim/tree/master/lua/modules">lua/modules</a>:</p>
+<pre><code>.
+└── lua
+    └── modules
+        └── bar.lua</code></pre>
+<p>a module should return a big table containing all specifications of
+plugins under that module, for instance:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode lua"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;goolord/alpha-nvim&#39;</span><span class="op">,</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">cond</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="va">vim</span><span class="op">.</span><span class="va">fn</span><span class="op">.</span>argc<span class="op">()</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>          <span class="va">vim</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">lines</span> <span class="op">&gt;=</span> <span class="dv">36</span> <span class="kw">and</span> <span class="va">vim</span><span class="op">.</span><span class="va">o</span><span class="op">.</span><span class="va">columns</span> <span class="op">&gt;=</span> <span class="dv">80</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">dependencies</span> <span class="op">=</span> <span class="st">&#39;nvim-web-devicons&#39;</span><span class="op">,</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;romgrk/barbar.nvim&#39;</span><span class="op">,</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">dependencies</span> <span class="op">=</span> <span class="st">&#39;nvim-web-devicons&#39;</span><span class="op">,</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">config</span> <span class="op">=</span> <span class="kw">function</span><span class="op">()</span> <span class="fu">require</span><span class="op">(</span><span class="st">&#39;bufferline&#39;</span><span class="op">).</span>setup<span class="op">()</span> <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>After creating the new module <code>bar</code>, enable it in <a
+href="hub.com/Bekaboo/nvim/blob/master/lua/core/packages.lua">lua/core/packages.lua</a>:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode lua"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>enable_modules<span class="op">({</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- ...</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;bar&#39;</span><span class="op">,</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- ...</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="op">})</span></span></code></pre></div>
+<h3 id="general-settings-and-options">General Settings and Options</h3>
+<p>See <a
+href="https://github.com/Bekaboo/nvim/blob/master/lua/core/general.lua">lua/core/general.lua</a>.</p>
+<h3 id="keymaps">Keymaps</h3>
+<p>See <a
+href="https://github.com/Bekaboo/nvim/blob/master/lua/core/keymaps.lua">lua/core/keymaps.lua</a>,
+or see module config files for corresponding plugin keymaps.</p>
+<h3 id="colorschemes">Colorschemes</h3>
+<p><code>cockatoo</code>, <code>nano</code>, and <code>dragon</code> are
+three builtin custom colorschemes, with separate palettes for dark and
+light background.</p>
+<p>Neovim is configured to restore the previous background and
+colorscheme settings on startup, so there is no need to set them up in
+the config file explicitly.</p>
+<p>To disable the auto-restore feature, remove the plugin <a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/colorswitch.lua">plugin/colorswitch.lua</a>.</p>
+<p>To tweak this colorscheme, edit corresponding colorscheme files under
+<a
+href="https://github.com/Bekaboo/nvim/tree/master/colors">colors</a>.</p>
+<h3 id="auto-commands">Auto Commands</h3>
+<p>See <a
+href="https://github.com/Bekaboo/nvim/blob/master/lua/core/autocmds.lua">lua/core/autocmds.lua</a>.</p>
+<h3 id="lsp-server-configurations">LSP Server Configurations</h3>
+<p>See <a
+href="https://github.com/Bekaboo/nvim/tree/master/lua/configs/lsp-server-configs">lua/configs/lsp-server-configs</a>
+and <a
+href="https://github.com/Bekaboo/nvim/tree/master/lua/configs/nvim-lspconfig.lua">lua/configs/nvim-lspconfig.lua</a>.</p>
+<h3 id="dap-configurations">DAP Configurations</h3>
+<p>See <a
+href="https://github.com/Bekaboo/nvim/tree/master/lua/configs/dap-configs">lua/configs/dap-configs</a>,
+<a
+href="https://github.com/Bekaboo/nvim/tree/master/lua/configs/nvim-dap.lua">lua/configs/nvim-dap.lua</a>,
+and <a
+href="https://github.com/Bekaboo/nvim/tree/master/lua/configs/nvim-dap-ui.lua">lua/configs/nvim-dap-ui.lua</a>.</p>
+<h3 id="snippets">Snippets</h3>
+<p>This configuration use <a
+href="https://github.com/L3MON4D3/LuaSnip">LuaSnip</a> as the snippet
+engine, custom snippets for different filetypes are defined under <a
+href="https://github.com/Bekaboo/nvim/tree/master/lua/snippets">lua/snippets</a>.</p>
+<h3 id="enabling-vscode-integration">Enabling VSCode Integration</h3>
+<p>VSCode integration takes advantages of the modular design, allowing
+to use a different set of modules when Neovim is launched by VSCode,
+relevant code is in <a
+href="https://github.com/Bekaboo/nvim/blob/master/plugin/vscode-neovim.vim">plugin/vscode-neovim.vim</a>
+and <a
+href="https://github.com/Bekaboo/nvim/blob/master/lua/core/packages.lua">lua/core/packages.lua</a>.</p>
+<p>To make VSCode integration work, please install <a
+href="https://github.com/vscode-neovim/vscode-neovim">VSCode-Neovim</a>
+in VSCode and configure it correctly.</p>
+<p>After setting up VSCode-Neovim, re-enter VSCode, open a random file
+and it should work out of the box.</p>
+<h2 id="appendix">Appendix</h2>
+<h3 id="showcases">Showcases</h3>
+<ul>
+<li><p>File manager using <a
+href="https://github.com/stevearc/oil.nvim">oil.nvim</a></p>
+<p><img src="https://github.com/Bekaboo/nvim/assets/76579810/26bb146f-7637-4f68-acd7-baecc08f1eaf" width=75%></p></li>
+<li><p>DAP support powered by <a
+href="https://github.com/mfussenegger/nvim-dap">nvim-dap</a> and <a
+href="https://github.com/rcarriga/nvim-dap-ui">nvim-dap-ui</a></p>
+<p><img src="https://github.com/Bekaboo/nvim/assets/76579810/f6c7e6ce-283b-43d7-8bc3-e8b24513a03b" width=75%></p></li>
+<li><p>Rendering images in markdown files with <a
+href="https://github.com/3rd/image.nvim">image.nvim</a></p>
+<p><img src="https://github.com/Bekaboo/nvim/assets/76579810/af2a3b2b-0601-482f-bf1e-b14e091ff179" width=75%></p></li>
+<li><p>Jupyter Notebook integration using <a
+href="https://github.com/goerz/jupytexthttps://github.com/benlubas/molten-nvim.vim">jupytext.vim</a>
+and <a
+href="https://github.com/benlubas/molten-nvim">molten-nvim</a></p>
+<p><img src="https://github.com/Bekaboo/nvim/assets/76579810/ce212348-8b89-4a03-a222-ab74f0338a7d" width=75%></p></li>
+<li><p>Winbar with IDE-like drop-down menus using <a
+href="https://github.com/Bekaboo/dropbar.nvim">dropbar.nvim</a></p>
+<p><img src="https://github.com/Bekaboo/nvim/assets/76579810/247401a9-6127-4d73-bb21-ceb847d8f7b9" width=75%></p></li>
+<li><p>LSP hover &amp; completion thanks to Neovim builtin LSP client
+and <a href="https://github.com/hrsh7th/nvim-cmp">nvim-cmp</a></p>
+<p><img src="https://github.com/Bekaboo/nvim/assets/76579810/13589137-b5c7-4104-810c-f8cdc56f9d1b" width=75%></p>
+<p><img src="https://github.com/Bekaboo/nvim/assets/76579810/60c5b599-4191-494d-ad83-1ca7a84eab17" width=75%></p></li>
+<li><p>Git integration: <a
+href="https://github.com/tpope/vim-fugitive">fugitive</a> and <a
+href="https://github.com/tpope/vim-fugitive">gitsigns.nvim</a></p>
+<p><img src="https://github.com/Bekaboo/nvim/assets/76579810/a5e0a41d-4e85-4bfc-a39d-cc7b76abedcf" width=75%></p>
+<p><img src="https://github.com/Bekaboo/nvim/assets/76579810/73da4ee1-8f6c-440a-9eb9-0bcf3bc8e3ea" width=75%></p></li>
+</ul>
+<h3 id="default-modules-and-plugins-of-choice">Default Modules and
+Plugins of Choice</h3>
+<h4 id="third-party-plugins">Third Party Plugins</h4>
+<p>Total # of plugins: 52 (package manager included).</p>
+<ul>
+<li><strong>Lib</strong>
+<ul>
+<li><a
+href="https://github.com/nvim-lua/plenary.nvim">plenary.nvim</a></li>
+<li><a
+href="https://github.com/kyazdani42/nvim-web-devicons">nvim-web-devicons</a></li>
+<li><a
+href="https://github.com/nvim-telescope/telescope-fzf-native.nvim">telescope-fzf-native.nvim</a></li>
+</ul></li>
+<li><strong>Completion</strong>
+<ul>
+<li><a href="https://github.com/hrsh7th/nvim-cmp">nvim-cmp</a></li>
+<li><a href="https://github.com/hrsh7th/cmp-calc">cmp-calc</a></li>
+<li><a
+href="https://github.com/hrsh7th/cmp-cmdline">cmp-cmdline</a></li>
+<li><a
+href="https://github.com/hrsh7th/cmp-nvim-lsp">cmp-nvim-lsp</a></li>
+<li><a href="https://github.com/tzachar/fuzzy.nvim">fuzzy.nvim</a></li>
+<li><a
+href="https://github.com/tzachar/cmp-fuzzy-path">cmp-fuzzy-path</a></li>
+<li><a href="https://github.com/hrsh7th/cmp-buffer">cmp-buffer</a></li>
+<li><a
+href="https://github.com/saadparwaiz1/cmp_luasnip">cmp_luasnip</a></li>
+<li><a
+href="https://github.com/hrsh7th/cmp-nvim-lsp-signature-help">cmp-nvim-lsp-signature-help</a></li>
+<li><a href="https://github.com/rcarriga/cmp-dap">cmp-dap</a></li>
+<li><a
+href="https://github.com/zbirenbaum/copilot.lua">copilot.lua</a></li>
+<li><a href="https://github.com/L3MON4D3/LuaSnip">LuaSnip</a></li>
+</ul></li>
+<li><strong>LSP</strong>
+<ul>
+<li><a
+href="https://github.com/neovim/nvim-lspconfig">nvim-lspconfig</a></li>
+<li><a
+href="https://github.com/p00f/clangd_extensions.nvim">clangd_extensions.nvim</a></li>
+<li><a href="https://github.com/dnlhc/glance.nvim">glance.nvim</a></li>
+</ul></li>
+<li><strong>Markup</strong>
+<ul>
+<li><a href="https://github.com/lervag/vimtex">vimtex</a></li>
+<li><a
+href="https://github.com/iamcco/markdown-preview.nvim">markdown-preview.nvim</a></li>
+<li><a
+href="https://github.com/dhruvasagar/vim-table-mode">vim-table-mode</a></li>
+<li><a href="https://github.com/3rd/image.nvim">image.nvim</a></li>
+<li><a href="https://github.com/jmbuhr/otter.nvim">otter.nvim</a></li>
+<li><a
+href="https://github.com/benlubas/molten-nvim">molten-nvim</a></li>
+<li><a
+href="https://github.com/goerz/jupytext.vim">jupytext.vim</a></li>
+<li><a
+href="https://github.com/lukas-reineke/headlines.nvim">headlines.nvim</a></li>
+</ul></li>
+<li><strong>Edit</strong>
+<ul>
+<li><a
+href="https://github.com/kylechui/nvim-surround">nvim-surround</a></li>
+<li><a
+href="https://github.com/numToStr/Comment.nvim">Comment.nvim</a></li>
+<li><a href="https://github.com/tpope/vim-sleuth">vim-sleuth</a></li>
+<li><a
+href="https://github.com/windwp/nvim-autopairs">nvim-autopairs</a></li>
+<li><a
+href="https://github.com/junegunn/vim-easy-align">vim-easy-align</a></li>
+</ul></li>
+<li><strong>Tools</strong>
+<ul>
+<li><a href="https://github.com/ibhagwan/fzf-lua">fzf-lua</a></li>
+<li><a
+href="https://github.com/willothy/flatten.nvim">flatten.nvim</a></li>
+<li><a
+href="https://github.com/lewis6991/gitsigns.nvim">gitsigns.nvim</a></li>
+<li><a href="akinsho/git-conflict.nvim">git-conflict</a></li>
+<li><a
+href="https://github.com/NvChad/nvim-colorizer.lua">nvim-colorizer.lua</a></li>
+<li><a
+href="https://github.com/tpope/vim-fugitive">vim-fugitive</a></li>
+<li><a href="https://github.com/stevearc/oil.nvim">oil.nvim</a></li>
+</ul></li>
+<li><strong>Treesitter</strong>
+<ul>
+<li><a
+href="https://github.com/nvim-treesitter/nvim-treesitter">nvim-treesitter</a></li>
+<li><a
+href="https://github.com/nvim-treesitter/nvim-treesitter-textobjects">nvim-treesitter-textobjects</a></li>
+<li><a
+href="https://github.com/JoosepAlviste/nvim-ts-context-commentstring">nvim-ts-context-commentstring</a></li>
+<li><a
+href="https://github.com/RRethy/nvim-treesitter-endwise">nvim-treesitter-endwise</a></li>
+<li><a href="https://github.com/Wansmer/treesj">treesj</a></li>
+<li><a
+href="https://github.com/Eandrju/cellular-automaton.nvim">cellular-automaton.nvim</a></li>
+</ul></li>
+<li><strong>Debug</strong>
+<ul>
+<li><a href="https://github.com/mfussenegger/nvim-dap">nvim-dap</a></li>
+<li><a
+href="https://github.com/rcarriga/nvim-dap-ui">nvim-dap-ui</a></li>
+<li><a
+href="https://github.com/jbyuki/one-small-step-for-vimkind">one-small-step-for-vimkind</a></li>
+</ul></li>
+<li><strong>Colorschemes</strong>
+<ul>
+<li><a
+href="https://github.com/rebelot/kanagawa.nvim">kanagawa.nvim</a></li>
+<li><a
+href="https://github.com/rose-pine/neovim">rose-pine/neovim</a></li>
+<li><a href="https://github.com/sainnhe/everforest">everforest</a></li>
+<li><a
+href="https://github.com/sainnhe/gruvbox-material">gruvbox-material</a></li>
+</ul></li>
+</ul>
+<h4 id="local-plugins">Local Plugins</h4>
+<ul>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/colorcolumn.lua">colorcolumn</a>
+<ul>
+<li>shows color column dynamically based on current line width</li>
+<li>released as <a
+href="https://github.com/Bekaboo/deadcolumn.nvim">deadcolumn.nvim</a></li>
+</ul></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/colorswitch.lua">colorswitch</a>
+<ul>
+<li>remembers and restores previous background and colorscheme
+settings</li>
+<li>syncs background and colorscheme settings among multiple Neovim
+instances if scripts <a
+href="https://github.com/Bekaboo/dot/blob/master/.scripts/setbg">setbg</a>
+and <a
+href="https://github.com/Bekaboo/dot/blob/master/.scripts/setcolors">setcolors</a>
+are in <code>$PATH</code></li>
+</ul></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/expandtab.lua">expandtab</a>
+<ul>
+<li>always use spaces for alignment</li>
+</ul></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/im.lua">im</a>
+<ul>
+<li>switches and restores fcitx state in each buffer asynchronouly</li>
+</ul></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/intro.lua">intro</a>
+<ul>
+<li>shows a custom intro message on startup</li>
+</ul></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/lsp-diagnostic.lua">lsp-diagnostic</a>
+<ul>
+<li>sets up LSP and diagnostic options and commands on
+<code>LspAttach</code> or <code>DiagnosticChanged</code></li>
+</ul></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/readline.lua">readline</a>
+<ul>
+<li>readline-like keybindings in insert and command mode</li>
+</ul></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/statuscolumn.lua">statuscolumn</a>
+<ul>
+<li>custom statuscolumn, with git signs on the right of line
+numbers</li>
+</ul></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/statusline.lua">statusline</a>
+<ul>
+<li>custom statusline inspired by <a
+href="https://github.com/rougier/nano-emacs">nano-emacs</a></li>
+</ul></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/tabout.lua">tabout</a>
+<ul>
+<li>tab out and in with <code>&lt;Tab&gt;</code> and
+<code>&lt;S-Tab&gt;</code></li>
+</ul></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/termopts.lua">termopts</a>
+<ul>
+<li>some nice setup for terminal buffers</li>
+</ul></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/tmux.lua">tmux</a>
+<ul>
+<li>integration with tmux, provides unified keymaps for navigation,
+resizing, and many other window operations</li>
+</ul></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/tree/master/plugin/vscode-neovim.vim">vscode-neovim</a>
+<ul>
+<li>integration with <a
+href="https://github.com/vscode-neovim/vscode-neovim">VSCode-Neovim</a></li>
+</ul></li>
+<li><a
+href="https://github.com/Bekaboo/nvim/blob/master/plugin/winbar.lua">winbar</a>
+<ul>
+<li>a winbar with drop-down menus and multiple backends</li>
+<li>released as <a
+href="https://github.com/Bekaboo/dropbar.nvim">dropbar.nvim</a></li>
+</ul></li>
+</ul>
+<h3 id="startuptime">Startuptime</h3>
+<ul>
+<li><p>Last update: 2023-11-07</p></li>
+<li><p>Neovim Version:</p>
+<pre><code>NVIM v0.10.0-dev-1452+g363e029e7ae
+Build type: RelWithDebInfo
+LuaJIT 2.1.1697887905
+Run &quot;nvim -V1 -v&quot; for more info</code></pre></li>
+<li><p>Config Commit:
+<code>02172098091cf5b1b93bb9b5af2d4e21c128499e</code> (#2021)</p></li>
+<li><p>System: Arch Linux 6.1.61-1-lts</p></li>
+<li><p>Machine: Dell XPS-13-7390</p></li>
+<li><p>Command:
+<code>nvim --startuptime startuptime.log +'call timer_start(0, {-&gt; execute('\''qall!'\'')})'</code></p>
+<details>
+<summary>
+<p>startuptime log</p>
+</summary>
+<pre><code>  times in msec
+   clock   self+sourced   self:  sourced script
+   clock   elapsed:              other lines
+
+  000.006  000.006: --- NVIM STARTING ---
+  000.121  000.115: event init
+  000.179  000.058: early init
+  000.218  000.039: locale set
+  000.255  000.037: init first window
+  000.478  000.223: inits 1
+  000.492  000.014: window checked
+  000.495  000.003: parsing arguments
+  000.920  000.073  000.073: require(&#39;vim.shared&#39;)
+  001.012  000.038  000.038: require(&#39;vim.inspect&#39;)
+  001.058  000.032  000.032: require(&#39;vim._options&#39;)
+  001.059  000.136  000.066: require(&#39;vim._editor&#39;)
+  001.060  000.255  000.046: require(&#39;vim._init_packages&#39;)
+  001.063  000.313: init lua interpreter
+  001.108  000.046: expanding arguments
+  001.122  000.014: inits 2
+  001.392  000.270: init highlight
+  001.393  000.001: waiting for UI
+  001.493  000.100: done waiting for UI
+  001.504  000.011: clear screen
+  001.520  000.007  000.007: require(&#39;vim.keymap&#39;)
+  001.743  000.232: init default mappings &amp; autocommands
+  002.245  000.050  000.050: sourcing /usr/share/nvim/runtime/ftplugin.vim
+  002.308  000.027  000.027: sourcing /usr/share/nvim/runtime/indent.vim
+  002.360  000.011  000.011: sourcing /usr/share/nvim/archlinux.vim
+  002.363  000.029  000.018: sourcing /etc/xdg/nvim/sysinit.vim
+  003.267  000.869  000.869: require(&#39;init.general&#39;)
+  003.578  000.027  000.027: require(&#39;utils&#39;)
+  005.382  000.116  000.116: require(&#39;utils.keymap&#39;)
+  005.529  002.259  002.115: require(&#39;init.keymaps&#39;)
+  005.896  000.364  000.364: require(&#39;init.autocmds&#39;)
+  006.685  000.535  000.535: require(&#39;modules.lib&#39;)
+  006.788  000.095  000.095: require(&#39;modules.completion&#39;)
+  006.835  000.041  000.041: require(&#39;modules.debug&#39;)
+  006.882  000.042  000.042: require(&#39;modules.edit&#39;)
+  006.918  000.032  000.032: require(&#39;modules.lsp&#39;)
+  006.955  000.033  000.033: require(&#39;modules.markup&#39;)
+  007.053  000.057  000.057: require(&#39;modules.tools&#39;)
+  007.121  000.046  000.046: require(&#39;modules.treesitter&#39;)
+  007.148  000.023  000.023: require(&#39;modules.colorschemes&#39;)
+  007.274  000.122  000.122: require(&#39;lazy&#39;)
+  007.307  000.019  000.019: require(&#39;ffi&#39;)
+  007.460  000.114  000.114: require(&#39;vim.uri&#39;)
+  007.476  000.166  000.052: require(&#39;vim.loader&#39;)
+  007.542  000.030  000.030: require(&#39;vim.fs&#39;)
+  007.818  000.323  000.293: require(&#39;lazy.stats&#39;)
+  007.972  000.126  000.126: require(&#39;lazy.core.util&#39;)
+  008.178  000.203  000.203: require(&#39;lazy.core.config&#39;)
+  008.419  000.058  000.058: require(&#39;lazy.core.handler&#39;)
+  008.502  000.080  000.080: require(&#39;lazy.core.plugin&#39;)
+  008.509  000.329  000.191: require(&#39;lazy.core.loader&#39;)
+  009.920  000.116  000.116: require(&#39;lazy.core.handler.event&#39;)
+  009.924  000.223  000.108: require(&#39;lazy.core.handler.ft&#39;)
+  010.006  000.078  000.078: require(&#39;lazy.core.handler.keys&#39;)
+  010.117  000.107  000.107: require(&#39;lazy.core.handler.cmd&#39;)
+  010.558  000.028  000.028: sourcing /home/zeng/.local/share/nvim/site/pack/packages/opt/vimtex/ftdetect/cls.vim
+  010.601  000.019  000.019: sourcing /home/zeng/.local/share/nvim/site/pack/packages/opt/vimtex/ftdetect/tex.vim
+  010.639  000.016  000.016: sourcing /home/zeng/.local/share/nvim/site/pack/packages/opt/vimtex/ftdetect/tikz.vim
+  012.476  000.197  000.197: sourcing /usr/share/nvim/runtime/filetype.lua
+  013.353  000.177  000.177: require(&#39;utils.hl&#39;)
+  013.396  000.279  000.102: sourcing /home/zeng/.config/nvim/plugin/colorcolumn.lua
+  013.501  000.076  000.076: sourcing /home/zeng/.config/nvim/plugin/colorswitch.lua
+  013.583  000.056  000.056: sourcing /home/zeng/.config/nvim/plugin/expandtab.lua
+  013.733  000.126  000.126: sourcing /home/zeng/.config/nvim/plugin/fzf-file-explorer.lua
+  014.013  000.252  000.252: sourcing /home/zeng/.config/nvim/plugin/lazygit.lua
+  014.169  000.128  000.128: sourcing /home/zeng/.config/nvim/plugin/lsp-diagnostic.lua
+  014.288  000.091  000.091: sourcing /home/zeng/.config/nvim/plugin/readline.lua
+  014.527  000.076  000.076: require(&#39;utils.stl&#39;)
+  014.555  000.238  000.162: sourcing /home/zeng/.config/nvim/plugin/statuscolumn.lua
+  014.706  000.123  000.123: sourcing /home/zeng/.config/nvim/plugin/statusline.lua
+  014.790  000.055  000.055: sourcing /home/zeng/.config/nvim/plugin/tabout.lua
+  014.851  000.036  000.036: sourcing /home/zeng/.config/nvim/plugin/termopts.lua
+  014.955  000.059  000.059: sourcing /home/zeng/.config/nvim/plugin/textobj-fold.lua
+  015.054  000.076  000.076: sourcing /home/zeng/.config/nvim/plugin/tmux.lua
+  015.093  000.014  000.014: sourcing /home/zeng/.config/nvim/plugin/vscode-neovim.vim
+  015.158  000.044  000.044: sourcing /home/zeng/.config/nvim/plugin/winbar.lua
+  015.301  000.044  000.044: sourcing /usr/share/nvim/runtime/plugin/editorconfig.lua
+  015.344  000.015  000.015: sourcing /usr/share/nvim/runtime/plugin/gzip.vim
+  015.417  000.050  000.050: sourcing /usr/share/nvim/runtime/plugin/man.lua
+  015.458  000.016  000.016: sourcing /usr/share/nvim/runtime/plugin/matchit.vim
+  015.665  000.184  000.184: sourcing /usr/share/nvim/runtime/plugin/matchparen.vim
+  015.713  000.020  000.020: sourcing /usr/share/nvim/runtime/plugin/netrwPlugin.vim
+  015.783  000.047  000.047: sourcing /usr/share/nvim/runtime/plugin/nvim.lua
+  015.984  000.176  000.176: sourcing /usr/share/nvim/runtime/plugin/rplugin.vim
+  016.072  000.061  000.061: sourcing /usr/share/nvim/runtime/plugin/shada.vim
+  016.143  000.024  000.024: sourcing /usr/share/nvim/runtime/plugin/spellfile.vim
+  016.188  000.016  000.016: sourcing /usr/share/nvim/runtime/plugin/tarPlugin.vim
+  016.225  000.012  000.012: sourcing /usr/share/nvim/runtime/plugin/tohtml.vim
+  016.266  000.020  000.020: sourcing /usr/share/nvim/runtime/plugin/tutor.vim
+  016.308  000.016  000.016: sourcing /usr/share/nvim/runtime/plugin/zipPlugin.vim
+  016.577  010.678  005.468: require(&#39;init.plugins&#39;)
+  016.580  014.196  000.026: sourcing /home/zeng/.config/nvim/init.lua
+  016.588  000.542: sourcing vimrc file(s)
+  016.828  000.082  000.082: sourcing /usr/share/nvim/runtime/filetype.lua
+  017.025  000.080  000.080: sourcing /usr/share/nvim/runtime/syntax/synload.vim
+  017.108  000.224  000.144: sourcing /usr/share/nvim/runtime/syntax/syntax.vim
+  017.129  000.235: inits 3
+  018.975  001.846: reading ShaDa
+  019.164  000.009  000.009: require(&#39;vim.F&#39;)
+  019.492  000.255  000.255: sourcing /usr/share/nvim/runtime/autoload/provider/clipboard.vim
+  019.661  000.421: opening buffers
+  019.687  000.027: BufEnter autocommands
+  019.691  000.004: editing files in windows
+  019.704  000.013: executing command arguments
+  019.706  000.002: VimEnter autocommands
+  021.749  001.265  001.265: sourcing /home/zeng/.config/nvim/colors/nano.lua
+  021.935  000.964: UIEnter autocommands
+  021.939  000.004: before starting main loop
+  022.348  000.074  000.074: require(&#39;utils.git&#39;)
+  022.500  000.143  000.143: require(&#39;vim._system&#39;)
+  024.289  002.133: first screen update
+  024.292  000.003: --- NVIM STARTED ---</code></pre>
+</details>
+<details>
+<summary>
+<p>statistics of 100 startups (sorted)</p>
+</summary>
+<pre><code>  023.286  000.003: --- NVIM STARTED ---
+  023.336  000.003: --- NVIM STARTED ---
+  023.382  000.003: --- NVIM STARTED ---
+  023.473  000.003: --- NVIM STARTED ---
+  023.567  000.004: --- NVIM STARTED ---
+  023.569  000.003: --- NVIM STARTED ---
+  023.584  000.003: --- NVIM STARTED ---
+  023.635  000.004: --- NVIM STARTED ---
+  023.649  000.003: --- NVIM STARTED ---
+  023.672  000.003: --- NVIM STARTED ---
+  023.675  000.004: --- NVIM STARTED ---
+  023.677  000.003: --- NVIM STARTED ---
+  023.687  000.003: --- NVIM STARTED ---
+  023.698  000.004: --- NVIM STARTED ---
+  023.701  000.003: --- NVIM STARTED ---
+  023.724  000.003: --- NVIM STARTED ---
+  023.727  000.003: --- NVIM STARTED ---
+  023.747  000.004: --- NVIM STARTED ---
+  023.796  000.003: --- NVIM STARTED ---
+  023.805  000.003: --- NVIM STARTED ---
+  023.828  000.004: --- NVIM STARTED ---
+  023.835  000.003: --- NVIM STARTED ---
+  023.856  000.003: --- NVIM STARTED ---
+  023.886  000.003: --- NVIM STARTED ---
+  023.911  000.003: --- NVIM STARTED ---
+  023.912  000.005: --- NVIM STARTED ---
+  023.946  000.012: --- NVIM STARTED ---
+  023.947  000.004: --- NVIM STARTED ---
+  023.948  000.003: --- NVIM STARTED ---
+  023.961  000.005: --- NVIM STARTED ---
+  023.969  000.003: --- NVIM STARTED ---
+  023.992  000.004: --- NVIM STARTED ---
+  024.003  000.004: --- NVIM STARTED ---
+  024.006  000.011: --- NVIM STARTED ---
+  024.047  000.004: --- NVIM STARTED ---
+  024.050  000.003: --- NVIM STARTED ---
+  024.087  000.003: --- NVIM STARTED ---
+  024.089  000.005: --- NVIM STARTED ---
+  024.093  000.003: --- NVIM STARTED ---
+  024.141  000.003: --- NVIM STARTED ---
+  024.145  000.003: --- NVIM STARTED ---
+  024.182  000.003: --- NVIM STARTED ---
+  024.190  000.004: --- NVIM STARTED ---
+  024.195  000.003: --- NVIM STARTED ---
+  024.210  000.003: --- NVIM STARTED ---
+  024.235  000.003: --- NVIM STARTED ---
+  024.265  000.004: --- NVIM STARTED ---
+  024.268  000.003: --- NVIM STARTED ---
+  024.276  000.004: --- NVIM STARTED ---
+  024.292  000.003: --- NVIM STARTED ---
+  024.300  000.004: --- NVIM STARTED ---
+  024.313  000.003: --- NVIM STARTED ---
+  024.319  000.004: --- NVIM STARTED ---
+  024.330  000.004: --- NVIM STARTED ---
+  024.368  000.004: --- NVIM STARTED ---
+  024.373  000.003: --- NVIM STARTED ---
+  024.375  000.003: --- NVIM STARTED ---
+  024.376  000.014: --- NVIM STARTED ---
+  024.386  000.003: --- NVIM STARTED ---
+  024.387  000.003: --- NVIM STARTED ---
+  024.392  000.004: --- NVIM STARTED ---
+  024.406  000.003: --- NVIM STARTED ---
+  024.415  000.004: --- NVIM STARTED ---
+  024.417  000.003: --- NVIM STARTED ---
+  024.439  000.003: --- NVIM STARTED ---
+  024.540  000.011: --- NVIM STARTED ---
+  024.547  000.003: --- NVIM STARTED ---
+  024.570  000.003: --- NVIM STARTED ---
+  024.611  000.004: --- NVIM STARTED ---
+  024.615  000.003: --- NVIM STARTED ---
+  024.626  000.003: --- NVIM STARTED ---
+  024.631  000.004: --- NVIM STARTED ---
+  024.641  000.003: --- NVIM STARTED ---
+  024.686  000.003: --- NVIM STARTED ---
+  024.710  000.003: --- NVIM STARTED ---
+  024.737  000.003: --- NVIM STARTED ---
+  024.739  000.003: --- NVIM STARTED ---
+  024.755  000.004: --- NVIM STARTED ---
+  024.771  000.004: --- NVIM STARTED ---
+  024.782  000.003: --- NVIM STARTED ---
+  024.814  000.003: --- NVIM STARTED ---
+  024.831  000.004: --- NVIM STARTED ---
+  024.861  000.003: --- NVIM STARTED ---
+  024.876  000.003: --- NVIM STARTED ---
+  024.878  000.003: --- NVIM STARTED ---
+  024.887  000.003: --- NVIM STARTED ---
+  024.911  000.004: --- NVIM STARTED ---
+  024.935  000.004: --- NVIM STARTED ---
+  024.957  000.004: --- NVIM STARTED ---
+  024.959  000.003: --- NVIM STARTED ---
+  024.960  000.005: --- NVIM STARTED ---
+  024.961  000.003: --- NVIM STARTED ---
+  025.002  000.003: --- NVIM STARTED ---
+  025.051  000.003: --- NVIM STARTED ---
+  025.070  000.004: --- NVIM STARTED ---
+  025.345  000.003: --- NVIM STARTED ---
+  025.365  000.004: --- NVIM STARTED ---
+  025.888  000.003: --- NVIM STARTED ---
+  025.944  000.004: --- NVIM STARTED ---
+  027.106  000.003: --- NVIM STARTED ---
+
+  Mean:  2433.31 / 100 = 24.3331</code></pre>
+</details></li>
+</ul>
+</body>
+</html>
