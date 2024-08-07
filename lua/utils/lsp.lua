@@ -31,6 +31,7 @@ M.default_config = {
 ---@field flags? table
 ---@field root_dir? string
 ---@field root_patterns? string[]
+---@field server_configs? string[]
 
 ---Wrapper of `vim.lsp.start()`, starts and attaches LSP client for
 ---the current buffer
@@ -51,6 +52,19 @@ function M.start(config, opts)
   local name = cmd_exec
   local bufname = vim.api.nvim_buf_get_name(0)
   if not vim.uv.fs_stat(bufname) then
+    return
+  end
+
+  -- Don't launch unconfigured servers unless `opts.launch_unconfigured` is set
+  -- Use `root_patterns` as fallback of server config file patterns
+  local server_configs = config.server_configs or config.root_patterns
+  local server_unconfigured = server_configs
+    and not vim.tbl_isempty(server_configs)
+    and vim.tbl_isempty(vim.fs.find(server_configs, {
+      upward = true,
+      path = vim.fs.dirname(bufname),
+    }))
+  if server_unconfigured and not (opts and opts.launch_unconfigured) then
     return
   end
 
