@@ -216,10 +216,17 @@ function actions._file_sel_to_ll(selected, opts)
   end
 end
 
-core.ACTION_DEFINITIONS[actions.toggle_dir] =
-  { 'Include dirs', fn_reload = 'Exclude dirs' }
-core.ACTION_DEFINITIONS[actions.toggle_ignore] =
-  { 'Disable .gitignore', fn_reload = 'Respect .gitignore' }
+core.ACTION_DEFINITIONS[actions.toggle_dir] = {
+  function(o)
+    -- When using `fd` the flag is '--type d', but for `find` the flag is
+    -- '-type d', use '-type d' as default flag here anyway since it is
+    -- the common substring for both `find` and `fd` commands
+    local flag = o.toggle_dir_flag or '-type d'
+    local escape = require('fzf-lua.utils').lua_regex_escape
+    return o.cmd and o.cmd:match(escape(flag)) and 'Exclude dirs'
+      or 'Include dirs'
+  end,
+}
 core.ACTION_DEFINITIONS[actions.switch_cwd] = { 'Change cwd', pos = 1 }
 core.ACTION_DEFINITIONS[actions.arg_del] = { 'delete' }
 core.ACTION_DEFINITIONS[actions.del_autocmd] = { 'delete autocmd' }
@@ -229,7 +236,6 @@ core.ACTION_DEFINITIONS[actions.ex_run] = { 'edit' }
 
 -- stylua: ignore start
 config._action_to_helpstr[actions.toggle_dir] = 'toggle-dir'
-config._action_to_helpstr[actions.toggle_ignore] = 'toggle-ignore'
 config._action_to_helpstr[actions.switch_provider] = 'switch-provider'
 config._action_to_helpstr[actions.switch_cwd] = 'change-cwd'
 config._action_to_helpstr[actions.arg_del] = 'delete'
