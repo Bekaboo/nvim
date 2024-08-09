@@ -35,7 +35,7 @@ if not formatter then
     local prettier_lang_settings = {
       {
         formatCommand = prettier_cmd
-          .. ' --stdin-filepath ${INPUT} ${--range-start=charStart} ${--range-end=charEnd} ${--tab-width=tabWidth} ${--use-tabs=!insertSpaces} ',
+          .. ' --stdin-filepath ${INPUT} ${--range-start=charStart} ${--range-end=charEnd} ${--tab-width=tabWidth} ${--use-tabs=!insertSpaces}',
         formatCanRange = true,
         formatStdin = true,
         rootMarkers = prettier_root_patterns,
